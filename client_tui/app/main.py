@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 
 from textual.app import App
 
-from app.screens import BoardScreen, LoginScreen
+from app.screens import DockDashboardScreen, LoginScreen
 from app.services import APIClient, WebSocketClient
 
 
@@ -26,15 +26,14 @@ class DCDockApp(App):
 
     async def on_mount(self) -> None:
         """Show login screen on startup."""
-        await self.push_screen(LoginScreen(self.api_client))
+        await self.push_screen(LoginScreen(self.api_client), callback=self.on_login_success)
 
-    async def on_screen_resume(self) -> None:
-        """Handle screen resume after login."""
-        # If we have a user, set token and show board
-        if self.api_client.token and self.api_client.user_data:
+    def on_login_success(self, user_data: Optional[Dict[str, Any]]) -> None:
+        """Handle successful login."""
+        if user_data and self.api_client.token:
             self.ws_client.set_token(self.api_client.token)
-            await self.push_screen(
-                BoardScreen(self.api_client, self.ws_client, self.api_client.user_data)
+            self.push_screen(
+                DockDashboardScreen(self.api_client, self.ws_client, user_data)
             )
 
 

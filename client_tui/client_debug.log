@@ -1,0 +1,1139 @@
+2025-11-04 20:09:02,034 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:09:14,071 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:09:14,073 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1087c0830>
+2025-11-04 20:09:14,073 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:09:14,073 - DEBUG - send_request_headers.complete
+2025-11-04 20:09:14,073 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:09:14,073 - DEBUG - send_request_body.complete
+2025-11-04 20:09:14,073 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:09:14,345 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:09:13 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:09:14,346 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:09:14,346 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:09:14,346 - DEBUG - receive_response_body.complete
+2025-11-04 20:09:14,346 - DEBUG - response_closed.started
+2025-11-04 20:09:14,346 - DEBUG - response_closed.complete
+2025-11-04 20:09:14,346 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:09:14,346 - DEBUG - send_request_headers.complete
+2025-11-04 20:09:14,346 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:09:14,346 - DEBUG - send_request_body.complete
+2025-11-04 20:09:14,346 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:09:14,349 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:09:13 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:09:14,349 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:09:14,349 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:09:14,349 - DEBUG - receive_response_body.complete
+2025-11-04 20:09:14,349 - DEBUG - response_closed.started
+2025-11-04 20:09:14,349 - DEBUG - response_closed.complete
+2025-11-04 20:09:14,349 - DEBUG - close.started
+2025-11-04 20:09:14,349 - DEBUG - close.complete
+2025-11-04 20:09:14,366 - INFO - RampGridScreen.on_mount() started
+2025-11-04 20:09:14,370 - DEBUG - = connection is CONNECTING
+2025-11-04 20:09:14,370 - DEBUG - > GET /api/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGRjZG9jay5jb20iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3NjIzNjk3NTR9.toZOftSf360bG_Vzc65k8fidsKyOq2IQ8mpdaaf0XzU HTTP/1.1
+2025-11-04 20:09:14,370 - DEBUG - > Host: localhost:8000
+2025-11-04 20:09:14,370 - DEBUG - > Upgrade: websocket
+2025-11-04 20:09:14,370 - DEBUG - > Connection: Upgrade
+2025-11-04 20:09:14,370 - DEBUG - > Sec-WebSocket-Key: Vz3f1U+kSnfS7NEl0OHL6g==
+2025-11-04 20:09:14,370 - DEBUG - > Sec-WebSocket-Version: 13
+2025-11-04 20:09:14,370 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-11-04 20:09:14,370 - DEBUG - > User-Agent: Python/3.14 websockets/15.0.1
+2025-11-04 20:09:14,371 - DEBUG - < HTTP/1.1 101 Switching Protocols
+2025-11-04 20:09:14,371 - DEBUG - < Upgrade: websocket
+2025-11-04 20:09:14,371 - DEBUG - < Connection: Upgrade
+2025-11-04 20:09:14,371 - DEBUG - < Sec-WebSocket-Accept: 502RAx6HSM0h4yfkPHsHFtGs0Ho=
+2025-11-04 20:09:14,371 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate
+2025-11-04 20:09:14,371 - DEBUG - < date: Tue, 04 Nov 2025 19:09:13 GMT
+2025-11-04 20:09:14,371 - DEBUG - < server: uvicorn
+2025-11-04 20:09:14,371 - DEBUG - = connection is OPEN
+2025-11-04 20:09:14,371 - DEBUG - < TEXT '{"type":"connection_ack","timestamp":"2025-11-0...ock real-time updates"}' [148 bytes]
+2025-11-04 20:09:14,372 - INFO - WebSocket connected successfully
+2025-11-04 20:09:14,372 - INFO - Refreshing ramp grid...
+2025-11-04 20:09:14,376 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:09:14,377 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108891d10>
+2025-11-04 20:09:14,377 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:09:14,377 - DEBUG - send_request_headers.complete
+2025-11-04 20:09:14,377 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:09:14,377 - DEBUG - send_request_body.complete
+2025-11-04 20:09:14,377 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:09:14,380 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:09:13 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1257'), (b'content-type', b'application/json')])
+2025-11-04 20:09:14,380 - INFO - HTTP Request: GET http://localhost:8000/api/ramps/ "HTTP/1.1 200 OK"
+2025-11-04 20:09:14,380 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:09:14,380 - DEBUG - receive_response_body.complete
+2025-11-04 20:09:14,381 - DEBUG - response_closed.started
+2025-11-04 20:09:14,381 - DEBUG - response_closed.complete
+2025-11-04 20:09:14,381 - DEBUG - close.started
+2025-11-04 20:09:14,381 - DEBUG - close.complete
+2025-11-04 20:09:14,386 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=30.0 socket_options=None
+2025-11-04 20:09:14,386 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108893110>
+2025-11-04 20:09:14,387 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:09:14,387 - DEBUG - send_request_headers.complete
+2025-11-04 20:09:14,387 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:09:14,387 - DEBUG - send_request_body.complete
+2025-11-04 20:09:14,387 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:09:14,404 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:09:13 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1262'), (b'content-type', b'application/json')])
+2025-11-04 20:09:14,404 - INFO - HTTP Request: GET http://localhost:8000/api/assignments/ "HTTP/1.1 200 OK"
+2025-11-04 20:09:14,404 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:09:14,404 - DEBUG - receive_response_body.complete
+2025-11-04 20:09:14,404 - DEBUG - response_closed.started
+2025-11-04 20:09:14,404 - DEBUG - response_closed.complete
+2025-11-04 20:09:14,404 - DEBUG - close.started
+2025-11-04 20:09:14,404 - DEBUG - close.complete
+2025-11-04 20:09:14,404 - INFO - Loaded 8 ramps and 1 assignments
+2025-11-04 20:09:14,415 - INFO - Grid refreshed with 8 ramps
+2025-11-04 20:09:14,415 - INFO - RampGridScreen.on_mount() completed
+2025-11-04 20:09:34,372 - DEBUG - > PING 3b cb 5d a1 [binary, 4 bytes]
+2025-11-04 20:09:34,372 - DEBUG - % sent keepalive ping
+2025-11-04 20:09:34,373 - DEBUG - < PING 29 40 26 b0 [binary, 4 bytes]
+2025-11-04 20:09:34,373 - DEBUG - > PONG 29 40 26 b0 [binary, 4 bytes]
+2025-11-04 20:09:34,373 - DEBUG - < PONG 3b cb 5d a1 [binary, 4 bytes]
+2025-11-04 20:09:34,374 - DEBUG - % received keepalive pong
+2025-11-04 20:12:37,006 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:12:42,405 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:12:42,408 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10bd9c830>
+2025-11-04 20:12:42,408 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:12:42,408 - DEBUG - send_request_headers.complete
+2025-11-04 20:12:42,408 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:12:42,408 - DEBUG - send_request_body.complete
+2025-11-04 20:12:42,408 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:12:42,645 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:12:42 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:12:42,645 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:12:42,645 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:12:42,645 - DEBUG - receive_response_body.complete
+2025-11-04 20:12:42,645 - DEBUG - response_closed.started
+2025-11-04 20:12:42,645 - DEBUG - response_closed.complete
+2025-11-04 20:12:42,646 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:12:42,646 - DEBUG - send_request_headers.complete
+2025-11-04 20:12:42,646 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:12:42,646 - DEBUG - send_request_body.complete
+2025-11-04 20:12:42,646 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:12:42,647 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:12:42 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:12:42,647 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:12:42,647 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:12:42,647 - DEBUG - receive_response_body.complete
+2025-11-04 20:12:42,647 - DEBUG - response_closed.started
+2025-11-04 20:12:42,647 - DEBUG - response_closed.complete
+2025-11-04 20:12:42,647 - DEBUG - close.started
+2025-11-04 20:12:42,647 - DEBUG - close.complete
+2025-11-04 20:12:42,665 - INFO - RampGridScreen.on_mount() started
+2025-11-04 20:12:42,669 - DEBUG - = connection is CONNECTING
+2025-11-04 20:12:42,669 - DEBUG - > GET /api/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGRjZG9jay5jb20iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3NjIzNjk5NjJ9.Kmm4MzACwz0Ueglti9Dg_KQI2VhqKXU2-vEevSnc2Gc HTTP/1.1
+2025-11-04 20:12:42,669 - DEBUG - > Host: localhost:8000
+2025-11-04 20:12:42,669 - DEBUG - > Upgrade: websocket
+2025-11-04 20:12:42,669 - DEBUG - > Connection: Upgrade
+2025-11-04 20:12:42,669 - DEBUG - > Sec-WebSocket-Key: ++Uu8b92e383JyQWW+gFmg==
+2025-11-04 20:12:42,669 - DEBUG - > Sec-WebSocket-Version: 13
+2025-11-04 20:12:42,669 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-11-04 20:12:42,669 - DEBUG - > User-Agent: Python/3.14 websockets/15.0.1
+2025-11-04 20:12:42,670 - DEBUG - < HTTP/1.1 101 Switching Protocols
+2025-11-04 20:12:42,670 - DEBUG - < Upgrade: websocket
+2025-11-04 20:12:42,670 - DEBUG - < Connection: Upgrade
+2025-11-04 20:12:42,670 - DEBUG - < Sec-WebSocket-Accept: 6BxDoqQHbTJToa2DCziMzgpj1+A=
+2025-11-04 20:12:42,670 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate
+2025-11-04 20:12:42,670 - DEBUG - < date: Tue, 04 Nov 2025 19:12:42 GMT
+2025-11-04 20:12:42,670 - DEBUG - < server: uvicorn
+2025-11-04 20:12:42,670 - DEBUG - = connection is OPEN
+2025-11-04 20:12:42,670 - DEBUG - < TEXT '{"type":"connection_ack","timestamp":"2025-11-0...ock real-time updates"}' [148 bytes]
+2025-11-04 20:12:42,671 - INFO - WebSocket connected successfully
+2025-11-04 20:12:42,671 - INFO - Refreshing ramp grid...
+2025-11-04 20:12:42,675 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:12:42,676 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10be79a90>
+2025-11-04 20:12:42,676 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:12:42,676 - DEBUG - send_request_headers.complete
+2025-11-04 20:12:42,676 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:12:42,676 - DEBUG - send_request_body.complete
+2025-11-04 20:12:42,676 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:12:42,678 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:12:42 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1257'), (b'content-type', b'application/json')])
+2025-11-04 20:12:42,678 - INFO - HTTP Request: GET http://localhost:8000/api/ramps/ "HTTP/1.1 200 OK"
+2025-11-04 20:12:42,678 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:12:42,678 - DEBUG - receive_response_body.complete
+2025-11-04 20:12:42,678 - DEBUG - response_closed.started
+2025-11-04 20:12:42,678 - DEBUG - response_closed.complete
+2025-11-04 20:12:42,678 - DEBUG - close.started
+2025-11-04 20:12:42,678 - DEBUG - close.complete
+2025-11-04 20:12:42,683 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=30.0 socket_options=None
+2025-11-04 20:12:42,684 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10be7ae90>
+2025-11-04 20:12:42,684 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:12:42,685 - DEBUG - send_request_headers.complete
+2025-11-04 20:12:42,685 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:12:42,685 - DEBUG - send_request_body.complete
+2025-11-04 20:12:42,685 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:12:42,688 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:12:42 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1262'), (b'content-type', b'application/json')])
+2025-11-04 20:12:42,688 - INFO - HTTP Request: GET http://localhost:8000/api/assignments/ "HTTP/1.1 200 OK"
+2025-11-04 20:12:42,688 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:12:42,688 - DEBUG - receive_response_body.complete
+2025-11-04 20:12:42,688 - DEBUG - response_closed.started
+2025-11-04 20:12:42,688 - DEBUG - response_closed.complete
+2025-11-04 20:12:42,689 - DEBUG - close.started
+2025-11-04 20:12:42,689 - DEBUG - close.complete
+2025-11-04 20:12:42,689 - INFO - Loaded 8 ramps and 1 assignments
+2025-11-04 20:12:42,699 - INFO - Grid refreshed with 8 ramps
+2025-11-04 20:12:42,699 - INFO - RampGridScreen.on_mount() completed
+2025-11-04 20:13:02,671 - DEBUG - > PING 2b 4b 28 df [binary, 4 bytes]
+2025-11-04 20:13:02,672 - DEBUG - % sent keepalive ping
+2025-11-04 20:13:02,672 - DEBUG - < PING f2 06 ec c1 [binary, 4 bytes]
+2025-11-04 20:13:02,673 - DEBUG - > PONG f2 06 ec c1 [binary, 4 bytes]
+2025-11-04 20:13:02,673 - DEBUG - < PONG 2b 4b 28 df [binary, 4 bytes]
+2025-11-04 20:13:02,673 - DEBUG - % received keepalive pong
+2025-11-04 20:13:22,673 - DEBUG - > PING 'mvȶ' [text, 4 bytes]
+2025-11-04 20:13:22,673 - DEBUG - % sent keepalive ping
+2025-11-04 20:13:22,674 - DEBUG - < PONG 'mvȶ' [text, 4 bytes]
+2025-11-04 20:13:22,674 - DEBUG - < PING 7c 58 54 de [binary, 4 bytes]
+2025-11-04 20:13:22,674 - DEBUG - > PONG 7c 58 54 de [binary, 4 bytes]
+2025-11-04 20:13:22,674 - DEBUG - % received keepalive pong
+2025-11-04 20:16:34,162 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:16:39,069 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:16:39,071 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x1089a0830>
+2025-11-04 20:16:39,071 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:16:39,071 - DEBUG - send_request_headers.complete
+2025-11-04 20:16:39,071 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:16:39,072 - DEBUG - send_request_body.complete
+2025-11-04 20:16:39,072 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:16:39,308 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:16:38 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:16:39,308 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:16:39,308 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:16:39,308 - DEBUG - receive_response_body.complete
+2025-11-04 20:16:39,309 - DEBUG - response_closed.started
+2025-11-04 20:16:39,309 - DEBUG - response_closed.complete
+2025-11-04 20:16:39,309 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:16:39,309 - DEBUG - send_request_headers.complete
+2025-11-04 20:16:39,309 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:16:39,309 - DEBUG - send_request_body.complete
+2025-11-04 20:16:39,309 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:16:39,310 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:16:38 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:16:39,310 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:16:39,310 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:16:39,310 - DEBUG - receive_response_body.complete
+2025-11-04 20:16:39,310 - DEBUG - response_closed.started
+2025-11-04 20:16:39,310 - DEBUG - response_closed.complete
+2025-11-04 20:16:39,310 - DEBUG - close.started
+2025-11-04 20:16:39,310 - DEBUG - close.complete
+2025-11-04 20:16:39,328 - INFO - RampGridScreen.on_mount() started
+2025-11-04 20:16:39,332 - DEBUG - = connection is CONNECTING
+2025-11-04 20:16:39,332 - DEBUG - > GET /api/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGRjZG9jay5jb20iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3NjIzNzAxOTl9.WpUREiVFmiuHW8etgmv59fpFoiAI_eWpYS51Ku7wVhw HTTP/1.1
+2025-11-04 20:16:39,332 - DEBUG - > Host: localhost:8000
+2025-11-04 20:16:39,332 - DEBUG - > Upgrade: websocket
+2025-11-04 20:16:39,333 - DEBUG - > Connection: Upgrade
+2025-11-04 20:16:39,333 - DEBUG - > Sec-WebSocket-Key: 5VRI/tshz4bjn7G4gzr+BQ==
+2025-11-04 20:16:39,333 - DEBUG - > Sec-WebSocket-Version: 13
+2025-11-04 20:16:39,333 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-11-04 20:16:39,333 - DEBUG - > User-Agent: Python/3.14 websockets/15.0.1
+2025-11-04 20:16:39,333 - DEBUG - < HTTP/1.1 101 Switching Protocols
+2025-11-04 20:16:39,333 - DEBUG - < Upgrade: websocket
+2025-11-04 20:16:39,333 - DEBUG - < Connection: Upgrade
+2025-11-04 20:16:39,333 - DEBUG - < Sec-WebSocket-Accept: AjOJ5hAT8fVYKc/L/arPROaQ6Xs=
+2025-11-04 20:16:39,333 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate
+2025-11-04 20:16:39,333 - DEBUG - < date: Tue, 04 Nov 2025 19:16:38 GMT
+2025-11-04 20:16:39,333 - DEBUG - < server: uvicorn
+2025-11-04 20:16:39,334 - DEBUG - = connection is OPEN
+2025-11-04 20:16:39,334 - DEBUG - < TEXT '{"type":"connection_ack","timestamp":"2025-11-0...ock real-time updates"}' [148 bytes]
+2025-11-04 20:16:39,334 - INFO - WebSocket connected successfully
+2025-11-04 20:16:39,334 - INFO - Refreshing ramp grid...
+2025-11-04 20:16:39,338 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:16:39,339 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108a79a90>
+2025-11-04 20:16:39,339 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:16:39,340 - DEBUG - send_request_headers.complete
+2025-11-04 20:16:39,340 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:16:39,340 - DEBUG - send_request_body.complete
+2025-11-04 20:16:39,340 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:16:39,341 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:16:38 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1257'), (b'content-type', b'application/json')])
+2025-11-04 20:16:39,341 - INFO - HTTP Request: GET http://localhost:8000/api/ramps/ "HTTP/1.1 200 OK"
+2025-11-04 20:16:39,341 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:16:39,341 - DEBUG - receive_response_body.complete
+2025-11-04 20:16:39,341 - DEBUG - response_closed.started
+2025-11-04 20:16:39,341 - DEBUG - response_closed.complete
+2025-11-04 20:16:39,341 - DEBUG - close.started
+2025-11-04 20:16:39,341 - DEBUG - close.complete
+2025-11-04 20:16:39,346 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=30.0 socket_options=None
+2025-11-04 20:16:39,347 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108a7ae90>
+2025-11-04 20:16:39,347 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:16:39,347 - DEBUG - send_request_headers.complete
+2025-11-04 20:16:39,347 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:16:39,347 - DEBUG - send_request_body.complete
+2025-11-04 20:16:39,347 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:16:39,351 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:16:38 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1262'), (b'content-type', b'application/json')])
+2025-11-04 20:16:39,351 - INFO - HTTP Request: GET http://localhost:8000/api/assignments/ "HTTP/1.1 200 OK"
+2025-11-04 20:16:39,351 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:16:39,351 - DEBUG - receive_response_body.complete
+2025-11-04 20:16:39,351 - DEBUG - response_closed.started
+2025-11-04 20:16:39,351 - DEBUG - response_closed.complete
+2025-11-04 20:16:39,351 - DEBUG - close.started
+2025-11-04 20:16:39,351 - DEBUG - close.complete
+2025-11-04 20:16:39,351 - INFO - Loaded 8 ramps and 1 assignments
+2025-11-04 20:16:39,355 - INFO - Grid refreshed with 8 ramps
+2025-11-04 20:16:39,355 - INFO - RampGridScreen.on_mount() completed
+2025-11-04 20:16:41,353 - INFO - Ramp R2 clicked, status: FREE
+2025-11-04 20:16:42,370 - INFO - Ramp R2 clicked, status: FREE
+2025-11-04 20:16:59,285 - INFO - Ramp R2 clicked, status: FREE
+2025-11-04 20:16:59,334 - DEBUG - > PING 52 93 78 8d [binary, 4 bytes]
+2025-11-04 20:16:59,335 - DEBUG - % sent keepalive ping
+2025-11-04 20:16:59,335 - DEBUG - < PING e7 7b 9c e0 [binary, 4 bytes]
+2025-11-04 20:16:59,335 - DEBUG - > PONG e7 7b 9c e0 [binary, 4 bytes]
+2025-11-04 20:16:59,335 - DEBUG - < PONG 52 93 78 8d [binary, 4 bytes]
+2025-11-04 20:16:59,336 - DEBUG - % received keepalive pong
+2025-11-04 20:16:59,692 - INFO - Ramp R2 clicked, status: FREE
+2025-11-04 20:16:59,878 - INFO - Ramp R2 clicked, status: FREE
+2025-11-04 20:17:00,063 - INFO - Ramp R2 clicked, status: FREE
+2025-11-04 20:17:03,110 - INFO - Grid refreshed with 7 ramps
+2025-11-04 20:17:03,669 - INFO - Grid refreshed with 7 ramps
+2025-11-04 20:17:04,744 - INFO - Grid refreshed with 8 ramps
+2025-11-04 20:17:06,029 - INFO - Grid refreshed with 7 ramps
+2025-11-04 20:17:06,309 - INFO - Grid refreshed with 8 ramps
+2025-11-04 20:17:19,271 - DEBUG - > PING 64 bf 43 4f [binary, 4 bytes]
+2025-11-04 20:17:19,271 - DEBUG - % sent keepalive ping
+2025-11-04 20:17:19,271 - DEBUG - < PONG 64 bf 43 4f [binary, 4 bytes]
+2025-11-04 20:17:19,272 - DEBUG - < PING 59 11 65 d5 [binary, 4 bytes]
+2025-11-04 20:17:19,272 - DEBUG - > PONG 59 11 65 d5 [binary, 4 bytes]
+2025-11-04 20:17:19,272 - DEBUG - % received keepalive pong
+2025-11-04 20:21:21,484 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:21:29,507 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:21:29,510 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10a2d0830>
+2025-11-04 20:21:29,510 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:21:29,510 - DEBUG - send_request_headers.complete
+2025-11-04 20:21:29,510 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:21:29,510 - DEBUG - send_request_body.complete
+2025-11-04 20:21:29,510 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:21:29,747 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:21:29 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:21:29,747 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:21:29,747 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:21:29,747 - DEBUG - receive_response_body.complete
+2025-11-04 20:21:29,747 - DEBUG - response_closed.started
+2025-11-04 20:21:29,747 - DEBUG - response_closed.complete
+2025-11-04 20:21:29,747 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:21:29,748 - DEBUG - send_request_headers.complete
+2025-11-04 20:21:29,748 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:21:29,748 - DEBUG - send_request_body.complete
+2025-11-04 20:21:29,748 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:21:29,749 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:21:29 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:21:29,749 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:21:29,749 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:21:29,749 - DEBUG - receive_response_body.complete
+2025-11-04 20:21:29,749 - DEBUG - response_closed.started
+2025-11-04 20:21:29,749 - DEBUG - response_closed.complete
+2025-11-04 20:21:29,749 - DEBUG - close.started
+2025-11-04 20:21:29,749 - DEBUG - close.complete
+2025-11-04 20:21:29,767 - INFO - RampGridScreen.on_mount() started
+2025-11-04 20:21:29,771 - DEBUG - = connection is CONNECTING
+2025-11-04 20:21:29,771 - DEBUG - > GET /api/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGRjZG9jay5jb20iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3NjIzNzA0ODl9.P7mCJEPCkxi1HQ6Vb5UTkXNv84_W7pmJEWxEOXIdSTA HTTP/1.1
+2025-11-04 20:21:29,771 - DEBUG - > Host: localhost:8000
+2025-11-04 20:21:29,771 - DEBUG - > Upgrade: websocket
+2025-11-04 20:21:29,771 - DEBUG - > Connection: Upgrade
+2025-11-04 20:21:29,771 - DEBUG - > Sec-WebSocket-Key: GFb00PPq6tV09wQ0rM4AVA==
+2025-11-04 20:21:29,771 - DEBUG - > Sec-WebSocket-Version: 13
+2025-11-04 20:21:29,771 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-11-04 20:21:29,771 - DEBUG - > User-Agent: Python/3.14 websockets/15.0.1
+2025-11-04 20:21:29,772 - DEBUG - < HTTP/1.1 101 Switching Protocols
+2025-11-04 20:21:29,772 - DEBUG - < Upgrade: websocket
+2025-11-04 20:21:29,772 - DEBUG - < Connection: Upgrade
+2025-11-04 20:21:29,772 - DEBUG - < Sec-WebSocket-Accept: 2hmTsDSIfewKVfZmshCKYPX77wc=
+2025-11-04 20:21:29,772 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate
+2025-11-04 20:21:29,772 - DEBUG - < date: Tue, 04 Nov 2025 19:21:29 GMT
+2025-11-04 20:21:29,772 - DEBUG - < server: uvicorn
+2025-11-04 20:21:29,772 - DEBUG - = connection is OPEN
+2025-11-04 20:21:29,772 - DEBUG - < TEXT '{"type":"connection_ack","timestamp":"2025-11-0...ock real-time updates"}' [148 bytes]
+2025-11-04 20:21:29,773 - INFO - WebSocket connected successfully
+2025-11-04 20:21:29,773 - INFO - Refreshing ramp grid...
+2025-11-04 20:21:29,777 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:21:29,778 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10a3a9d10>
+2025-11-04 20:21:29,778 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:21:29,778 - DEBUG - send_request_headers.complete
+2025-11-04 20:21:29,778 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:21:29,778 - DEBUG - send_request_body.complete
+2025-11-04 20:21:29,778 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:21:29,780 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:21:29 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1257'), (b'content-type', b'application/json')])
+2025-11-04 20:21:29,780 - INFO - HTTP Request: GET http://localhost:8000/api/ramps/ "HTTP/1.1 200 OK"
+2025-11-04 20:21:29,780 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:21:29,780 - DEBUG - receive_response_body.complete
+2025-11-04 20:21:29,780 - DEBUG - response_closed.started
+2025-11-04 20:21:29,780 - DEBUG - response_closed.complete
+2025-11-04 20:21:29,780 - DEBUG - close.started
+2025-11-04 20:21:29,780 - DEBUG - close.complete
+2025-11-04 20:21:29,785 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=30.0 socket_options=None
+2025-11-04 20:21:29,786 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10a3ab110>
+2025-11-04 20:21:29,786 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:21:29,786 - DEBUG - send_request_headers.complete
+2025-11-04 20:21:29,786 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:21:29,786 - DEBUG - send_request_body.complete
+2025-11-04 20:21:29,786 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:21:29,790 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:21:29 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1262'), (b'content-type', b'application/json')])
+2025-11-04 20:21:29,790 - INFO - HTTP Request: GET http://localhost:8000/api/assignments/ "HTTP/1.1 200 OK"
+2025-11-04 20:21:29,790 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:21:29,790 - DEBUG - receive_response_body.complete
+2025-11-04 20:21:29,790 - DEBUG - response_closed.started
+2025-11-04 20:21:29,790 - DEBUG - response_closed.complete
+2025-11-04 20:21:29,790 - DEBUG - close.started
+2025-11-04 20:21:29,790 - DEBUG - close.complete
+2025-11-04 20:21:29,790 - INFO - Loaded 8 ramps and 1 assignments
+2025-11-04 20:21:29,794 - INFO - Grid refreshed with 8 ramps
+2025-11-04 20:21:29,794 - INFO - RampGridScreen.on_mount() completed
+2025-11-04 20:21:31,789 - INFO - Ramp R4 clicked, status: FREE
+2025-11-04 20:21:32,273 - INFO - Ramp R3 clicked, status: FREE
+2025-11-04 20:21:32,860 - INFO - Ramp R2 clicked, status: FREE
+2025-11-04 20:21:33,893 - INFO - Ramp R3 clicked, status: FREE
+2025-11-04 20:21:49,773 - DEBUG - > PING 8c 74 61 c0 [binary, 4 bytes]
+2025-11-04 20:21:49,775 - DEBUG - % sent keepalive ping
+2025-11-04 20:21:49,775 - DEBUG - < PING ff bd ea e1 [binary, 4 bytes]
+2025-11-04 20:21:49,775 - DEBUG - > PONG ff bd ea e1 [binary, 4 bytes]
+2025-11-04 20:21:49,776 - DEBUG - < PONG 8c 74 61 c0 [binary, 4 bytes]
+2025-11-04 20:21:49,776 - DEBUG - % received keepalive pong
+2025-11-04 20:22:09,774 - DEBUG - > PING 64 c9 7f 55 [binary, 4 bytes]
+2025-11-04 20:22:09,775 - DEBUG - % sent keepalive ping
+2025-11-04 20:22:09,776 - DEBUG - < PONG 64 c9 7f 55 [binary, 4 bytes]
+2025-11-04 20:22:09,776 - DEBUG - < PING ec 86 d8 c0 [binary, 4 bytes]
+2025-11-04 20:22:09,776 - DEBUG - > PONG ec 86 d8 c0 [binary, 4 bytes]
+2025-11-04 20:22:09,777 - DEBUG - % received keepalive pong
+2025-11-04 20:22:29,775 - DEBUG - > PING 1f da 58 a4 [binary, 4 bytes]
+2025-11-04 20:22:29,776 - DEBUG - % sent keepalive ping
+2025-11-04 20:22:29,777 - DEBUG - < PONG 1f da 58 a4 [binary, 4 bytes]
+2025-11-04 20:22:29,777 - DEBUG - < PING 17 ad b1 b4 [binary, 4 bytes]
+2025-11-04 20:22:29,777 - DEBUG - > PONG 17 ad b1 b4 [binary, 4 bytes]
+2025-11-04 20:22:29,777 - DEBUG - % received keepalive pong
+2025-11-04 20:22:49,776 - DEBUG - > PING 1b 8c c6 c6 [binary, 4 bytes]
+2025-11-04 20:22:49,777 - DEBUG - % sent keepalive ping
+2025-11-04 20:22:49,778 - DEBUG - < PONG 1b 8c c6 c6 [binary, 4 bytes]
+2025-11-04 20:22:49,778 - DEBUG - < PING c8 24 65 c7 [binary, 4 bytes]
+2025-11-04 20:22:49,778 - DEBUG - > PONG c8 24 65 c7 [binary, 4 bytes]
+2025-11-04 20:22:49,778 - DEBUG - % received keepalive pong
+2025-11-04 20:23:09,777 - DEBUG - > PING d1 3a 82 6a [binary, 4 bytes]
+2025-11-04 20:23:09,778 - DEBUG - % sent keepalive ping
+2025-11-04 20:23:09,779 - DEBUG - < PONG d1 3a 82 6a [binary, 4 bytes]
+2025-11-04 20:23:09,779 - DEBUG - < PING ac cd 1a 8e [binary, 4 bytes]
+2025-11-04 20:23:09,779 - DEBUG - > PONG ac cd 1a 8e [binary, 4 bytes]
+2025-11-04 20:23:09,779 - DEBUG - % received keepalive pong
+2025-11-04 20:23:29,777 - DEBUG - > PING d7 02 77 b6 [binary, 4 bytes]
+2025-11-04 20:23:29,778 - DEBUG - % sent keepalive ping
+2025-11-04 20:23:29,779 - DEBUG - < PONG d7 02 77 b6 [binary, 4 bytes]
+2025-11-04 20:23:29,779 - DEBUG - % received keepalive pong
+2025-11-04 20:23:29,780 - DEBUG - < PING 8f 0e 1d 32 [binary, 4 bytes]
+2025-11-04 20:23:29,780 - DEBUG - > PONG 8f 0e 1d 32 [binary, 4 bytes]
+2025-11-04 20:23:49,777 - DEBUG - > PING e2 5d 7a 59 [binary, 4 bytes]
+2025-11-04 20:23:49,778 - DEBUG - % sent keepalive ping
+2025-11-04 20:23:49,778 - DEBUG - < PONG e2 5d 7a 59 [binary, 4 bytes]
+2025-11-04 20:23:49,779 - DEBUG - % received keepalive pong
+2025-11-04 20:23:49,780 - DEBUG - < PING 9e 6a e3 f1 [binary, 4 bytes]
+2025-11-04 20:23:49,780 - DEBUG - > PONG 9e 6a e3 f1 [binary, 4 bytes]
+2025-11-04 20:24:09,778 - DEBUG - > PING 65 0d f9 0a [binary, 4 bytes]
+2025-11-04 20:24:09,779 - DEBUG - % sent keepalive ping
+2025-11-04 20:24:09,779 - DEBUG - < PONG 65 0d f9 0a [binary, 4 bytes]
+2025-11-04 20:24:09,780 - DEBUG - % received keepalive pong
+2025-11-04 20:24:09,781 - DEBUG - < PING d9 af 83 71 [binary, 4 bytes]
+2025-11-04 20:24:09,781 - DEBUG - > PONG d9 af 83 71 [binary, 4 bytes]
+2025-11-04 20:24:29,778 - DEBUG - > PING 1e f7 a9 f8 [binary, 4 bytes]
+2025-11-04 20:24:29,779 - DEBUG - % sent keepalive ping
+2025-11-04 20:24:29,780 - DEBUG - < PONG 1e f7 a9 f8 [binary, 4 bytes]
+2025-11-04 20:24:29,780 - DEBUG - % received keepalive pong
+2025-11-04 20:24:29,781 - DEBUG - < PING ca 19 32 36 [binary, 4 bytes]
+2025-11-04 20:24:29,781 - DEBUG - > PONG ca 19 32 36 [binary, 4 bytes]
+2025-11-04 20:24:49,779 - DEBUG - > PING 12 ed ca 2b [binary, 4 bytes]
+2025-11-04 20:24:49,780 - DEBUG - % sent keepalive ping
+2025-11-04 20:24:49,780 - DEBUG - < PONG 12 ed ca 2b [binary, 4 bytes]
+2025-11-04 20:24:49,781 - DEBUG - % received keepalive pong
+2025-11-04 20:24:49,782 - DEBUG - < PING 42 5e fd e2 [binary, 4 bytes]
+2025-11-04 20:24:49,782 - DEBUG - > PONG 42 5e fd e2 [binary, 4 bytes]
+2025-11-04 20:25:09,779 - DEBUG - > PING e5 72 24 24 [binary, 4 bytes]
+2025-11-04 20:25:09,780 - DEBUG - % sent keepalive ping
+2025-11-04 20:25:09,781 - DEBUG - < PONG e5 72 24 24 [binary, 4 bytes]
+2025-11-04 20:25:09,781 - DEBUG - % received keepalive pong
+2025-11-04 20:25:09,783 - DEBUG - < PING 8b d0 95 b0 [binary, 4 bytes]
+2025-11-04 20:25:09,784 - DEBUG - > PONG 8b d0 95 b0 [binary, 4 bytes]
+2025-11-04 20:25:29,780 - DEBUG - > PING 7a 98 d3 70 [binary, 4 bytes]
+2025-11-04 20:25:29,782 - DEBUG - % sent keepalive ping
+2025-11-04 20:25:29,782 - DEBUG - < PONG 7a 98 d3 70 [binary, 4 bytes]
+2025-11-04 20:25:29,783 - DEBUG - % received keepalive pong
+2025-11-04 20:25:29,784 - DEBUG - < PING 88 65 18 a9 [binary, 4 bytes]
+2025-11-04 20:25:29,784 - DEBUG - > PONG 88 65 18 a9 [binary, 4 bytes]
+2025-11-04 20:25:49,781 - DEBUG - > PING ba a6 aa cc [binary, 4 bytes]
+2025-11-04 20:25:49,782 - DEBUG - % sent keepalive ping
+2025-11-04 20:25:49,782 - DEBUG - < PONG ba a6 aa cc [binary, 4 bytes]
+2025-11-04 20:25:49,783 - DEBUG - % received keepalive pong
+2025-11-04 20:25:49,785 - DEBUG - < PING 74 f6 7b ca [binary, 4 bytes]
+2025-11-04 20:25:49,785 - DEBUG - > PONG 74 f6 7b ca [binary, 4 bytes]
+2025-11-04 20:26:09,782 - DEBUG - > PING ea 29 d7 0a [binary, 4 bytes]
+2025-11-04 20:26:09,782 - DEBUG - % sent keepalive ping
+2025-11-04 20:26:09,783 - DEBUG - < PONG ea 29 d7 0a [binary, 4 bytes]
+2025-11-04 20:26:09,783 - DEBUG - % received keepalive pong
+2025-11-04 20:26:09,786 - DEBUG - < PING 63 c2 c8 2b [binary, 4 bytes]
+2025-11-04 20:26:09,786 - DEBUG - > PONG 63 c2 c8 2b [binary, 4 bytes]
+2025-11-04 20:26:29,782 - DEBUG - > PING e0 93 37 61 [binary, 4 bytes]
+2025-11-04 20:26:29,783 - DEBUG - % sent keepalive ping
+2025-11-04 20:26:29,783 - DEBUG - < PONG e0 93 37 61 [binary, 4 bytes]
+2025-11-04 20:26:29,783 - DEBUG - % received keepalive pong
+2025-11-04 20:26:29,787 - DEBUG - < PING d6 02 5e 40 [binary, 4 bytes]
+2025-11-04 20:26:29,787 - DEBUG - > PONG d6 02 5e 40 [binary, 4 bytes]
+2025-11-04 20:26:49,783 - DEBUG - > PING 43 19 9d 79 [binary, 4 bytes]
+2025-11-04 20:26:49,783 - DEBUG - % sent keepalive ping
+2025-11-04 20:26:49,783 - DEBUG - < PONG 43 19 9d 79 [binary, 4 bytes]
+2025-11-04 20:26:49,784 - DEBUG - % received keepalive pong
+2025-11-04 20:26:49,787 - DEBUG - < PING 60 95 76 31 [binary, 4 bytes]
+2025-11-04 20:26:49,787 - DEBUG - > PONG 60 95 76 31 [binary, 4 bytes]
+2025-11-04 20:27:09,783 - DEBUG - > PING 46 3d cf e0 [binary, 4 bytes]
+2025-11-04 20:27:09,784 - DEBUG - % sent keepalive ping
+2025-11-04 20:27:09,785 - DEBUG - < PONG 46 3d cf e0 [binary, 4 bytes]
+2025-11-04 20:27:09,785 - DEBUG - % received keepalive pong
+2025-11-04 20:27:09,787 - DEBUG - < PING 61 2e bb 37 [binary, 4 bytes]
+2025-11-04 20:27:09,788 - DEBUG - > PONG 61 2e bb 37 [binary, 4 bytes]
+2025-11-04 20:27:29,784 - DEBUG - > PING "'d|s" [text, 4 bytes]
+2025-11-04 20:27:29,785 - DEBUG - % sent keepalive ping
+2025-11-04 20:27:29,785 - DEBUG - < PONG "'d|s" [text, 4 bytes]
+2025-11-04 20:27:29,786 - DEBUG - % received keepalive pong
+2025-11-04 20:27:29,788 - DEBUG - < PING 0a 67 dd 03 [binary, 4 bytes]
+2025-11-04 20:27:29,788 - DEBUG - > PONG 0a 67 dd 03 [binary, 4 bytes]
+2025-11-04 20:27:49,785 - DEBUG - > PING 81 61 e2 96 [binary, 4 bytes]
+2025-11-04 20:27:49,786 - DEBUG - % sent keepalive ping
+2025-11-04 20:27:49,787 - DEBUG - < PONG 81 61 e2 96 [binary, 4 bytes]
+2025-11-04 20:27:49,787 - DEBUG - % received keepalive pong
+2025-11-04 20:27:49,789 - DEBUG - < PING 0c 95 e6 1f [binary, 4 bytes]
+2025-11-04 20:27:49,789 - DEBUG - > PONG 0c 95 e6 1f [binary, 4 bytes]
+2025-11-04 20:28:09,786 - DEBUG - > PING 67 04 10 ca [binary, 4 bytes]
+2025-11-04 20:28:09,787 - DEBUG - % sent keepalive ping
+2025-11-04 20:28:09,787 - DEBUG - < PONG 67 04 10 ca [binary, 4 bytes]
+2025-11-04 20:28:09,787 - DEBUG - % received keepalive pong
+2025-11-04 20:28:09,791 - DEBUG - < PING 9b 05 d5 80 [binary, 4 bytes]
+2025-11-04 20:28:09,791 - DEBUG - > PONG 9b 05 d5 80 [binary, 4 bytes]
+2025-11-04 20:28:29,787 - DEBUG - > PING 70 b3 cd 4b [binary, 4 bytes]
+2025-11-04 20:28:29,787 - DEBUG - % sent keepalive ping
+2025-11-04 20:28:29,788 - DEBUG - < PONG 70 b3 cd 4b [binary, 4 bytes]
+2025-11-04 20:28:29,788 - DEBUG - % received keepalive pong
+2025-11-04 20:28:29,792 - DEBUG - < PING d2 30 a0 60 [binary, 4 bytes]
+2025-11-04 20:28:29,792 - DEBUG - > PONG d2 30 a0 60 [binary, 4 bytes]
+2025-11-04 20:28:49,787 - DEBUG - > PING 0b bb b2 ce [binary, 4 bytes]
+2025-11-04 20:28:49,788 - DEBUG - % sent keepalive ping
+2025-11-04 20:28:49,789 - DEBUG - < PONG 0b bb b2 ce [binary, 4 bytes]
+2025-11-04 20:28:49,789 - DEBUG - % received keepalive pong
+2025-11-04 20:28:49,794 - DEBUG - < PING 1c 2b 95 26 [binary, 4 bytes]
+2025-11-04 20:28:49,794 - DEBUG - > PONG 1c 2b 95 26 [binary, 4 bytes]
+2025-11-04 20:29:09,788 - DEBUG - > PING 88 27 b0 47 [binary, 4 bytes]
+2025-11-04 20:29:09,789 - DEBUG - % sent keepalive ping
+2025-11-04 20:29:09,790 - DEBUG - < PONG 88 27 b0 47 [binary, 4 bytes]
+2025-11-04 20:29:09,790 - DEBUG - % received keepalive pong
+2025-11-04 20:29:09,794 - DEBUG - < PING aa c3 40 4a [binary, 4 bytes]
+2025-11-04 20:29:09,795 - DEBUG - > PONG aa c3 40 4a [binary, 4 bytes]
+2025-11-04 20:29:29,789 - DEBUG - > PING 3c 54 e0 87 [binary, 4 bytes]
+2025-11-04 20:29:29,790 - DEBUG - % sent keepalive ping
+2025-11-04 20:29:29,790 - DEBUG - < PONG 3c 54 e0 87 [binary, 4 bytes]
+2025-11-04 20:29:29,791 - DEBUG - % received keepalive pong
+2025-11-04 20:29:29,795 - DEBUG - < PING '\x031r ' [text, 4 bytes]
+2025-11-04 20:29:29,795 - DEBUG - > PONG '\x031r ' [text, 4 bytes]
+2025-11-04 20:29:49,790 - DEBUG - > PING 2f e7 5f 7e [binary, 4 bytes]
+2025-11-04 20:29:49,791 - DEBUG - % sent keepalive ping
+2025-11-04 20:29:49,791 - DEBUG - < PONG 2f e7 5f 7e [binary, 4 bytes]
+2025-11-04 20:29:49,792 - DEBUG - % received keepalive pong
+2025-11-04 20:29:49,796 - DEBUG - < PING 7f e6 db 04 [binary, 4 bytes]
+2025-11-04 20:29:49,796 - DEBUG - > PONG 7f e6 db 04 [binary, 4 bytes]
+2025-11-04 20:30:09,790 - DEBUG - > PING 9b 70 dc 2f [binary, 4 bytes]
+2025-11-04 20:30:09,791 - DEBUG - % sent keepalive ping
+2025-11-04 20:30:09,791 - DEBUG - < PONG 9b 70 dc 2f [binary, 4 bytes]
+2025-11-04 20:30:09,792 - DEBUG - % received keepalive pong
+2025-11-04 20:30:09,797 - DEBUG - < PING e7 ee 1c a6 [binary, 4 bytes]
+2025-11-04 20:30:09,797 - DEBUG - > PONG e7 ee 1c a6 [binary, 4 bytes]
+2025-11-04 20:30:29,791 - DEBUG - > PING 86 b7 99 7f [binary, 4 bytes]
+2025-11-04 20:30:29,792 - DEBUG - % sent keepalive ping
+2025-11-04 20:30:29,792 - DEBUG - < PONG 86 b7 99 7f [binary, 4 bytes]
+2025-11-04 20:30:29,793 - DEBUG - % received keepalive pong
+2025-11-04 20:30:29,798 - DEBUG - < PING d5 25 a7 68 [binary, 4 bytes]
+2025-11-04 20:30:29,798 - DEBUG - > PONG d5 25 a7 68 [binary, 4 bytes]
+2025-11-04 20:30:49,792 - DEBUG - > PING 06 dc d4 2d [binary, 4 bytes]
+2025-11-04 20:30:49,793 - DEBUG - % sent keepalive ping
+2025-11-04 20:30:49,793 - DEBUG - < PONG 06 dc d4 2d [binary, 4 bytes]
+2025-11-04 20:30:49,793 - DEBUG - % received keepalive pong
+2025-11-04 20:30:49,800 - DEBUG - < PING d5 5d c3 fb [binary, 4 bytes]
+2025-11-04 20:30:49,801 - DEBUG - > PONG d5 5d c3 fb [binary, 4 bytes]
+2025-11-04 20:31:09,792 - DEBUG - > PING 08 be b5 b1 [binary, 4 bytes]
+2025-11-04 20:31:09,792 - DEBUG - % sent keepalive ping
+2025-11-04 20:31:09,793 - DEBUG - < PONG 08 be b5 b1 [binary, 4 bytes]
+2025-11-04 20:31:09,793 - DEBUG - % received keepalive pong
+2025-11-04 20:31:09,802 - DEBUG - < PING dd 4b 74 22 [binary, 4 bytes]
+2025-11-04 20:31:09,802 - DEBUG - > PONG dd 4b 74 22 [binary, 4 bytes]
+2025-11-04 20:31:29,792 - DEBUG - > PING 32 c7 db 8e [binary, 4 bytes]
+2025-11-04 20:31:29,793 - DEBUG - % sent keepalive ping
+2025-11-04 20:31:29,794 - DEBUG - < PONG 32 c7 db 8e [binary, 4 bytes]
+2025-11-04 20:31:29,794 - DEBUG - % received keepalive pong
+2025-11-04 20:31:29,805 - DEBUG - < PING '1v4\x10' [text, 4 bytes]
+2025-11-04 20:31:29,805 - DEBUG - > PONG '1v4\x10' [text, 4 bytes]
+2025-11-04 20:31:49,793 - DEBUG - > PING dd 8f a2 f3 [binary, 4 bytes]
+2025-11-04 20:31:49,794 - DEBUG - % sent keepalive ping
+2025-11-04 20:31:49,795 - DEBUG - < PONG dd 8f a2 f3 [binary, 4 bytes]
+2025-11-04 20:31:49,795 - DEBUG - % received keepalive pong
+2025-11-04 20:31:49,807 - DEBUG - < PING 72 f7 80 df [binary, 4 bytes]
+2025-11-04 20:31:49,808 - DEBUG - > PONG 72 f7 80 df [binary, 4 bytes]
+2025-11-04 20:32:09,795 - DEBUG - > PING 24 ce 86 c7 [binary, 4 bytes]
+2025-11-04 20:32:09,795 - DEBUG - % sent keepalive ping
+2025-11-04 20:32:09,796 - DEBUG - < PONG 24 ce 86 c7 [binary, 4 bytes]
+2025-11-04 20:32:09,796 - DEBUG - % received keepalive pong
+2025-11-04 20:32:09,810 - DEBUG - < PING 70 ac b0 58 [binary, 4 bytes]
+2025-11-04 20:32:09,810 - DEBUG - > PONG 70 ac b0 58 [binary, 4 bytes]
+2025-11-04 20:32:29,796 - DEBUG - > PING d5 e4 d3 ac [binary, 4 bytes]
+2025-11-04 20:32:29,796 - DEBUG - % sent keepalive ping
+2025-11-04 20:32:29,797 - DEBUG - < PONG d5 e4 d3 ac [binary, 4 bytes]
+2025-11-04 20:32:29,798 - DEBUG - % received keepalive pong
+2025-11-04 20:32:29,812 - DEBUG - < PING 52 ae 3a 6c [binary, 4 bytes]
+2025-11-04 20:32:29,813 - DEBUG - > PONG 52 ae 3a 6c [binary, 4 bytes]
+2025-11-04 20:32:49,796 - DEBUG - > PING b8 b3 1f 81 [binary, 4 bytes]
+2025-11-04 20:32:49,797 - DEBUG - % sent keepalive ping
+2025-11-04 20:32:49,798 - DEBUG - < PONG b8 b3 1f 81 [binary, 4 bytes]
+2025-11-04 20:32:49,798 - DEBUG - % received keepalive pong
+2025-11-04 20:32:49,815 - DEBUG - < PING 6f b7 5c e1 [binary, 4 bytes]
+2025-11-04 20:32:49,816 - DEBUG - > PONG 6f b7 5c e1 [binary, 4 bytes]
+2025-11-04 20:33:09,797 - DEBUG - > PING f7 b7 91 67 [binary, 4 bytes]
+2025-11-04 20:33:09,798 - DEBUG - % sent keepalive ping
+2025-11-04 20:33:09,798 - DEBUG - < PONG f7 b7 91 67 [binary, 4 bytes]
+2025-11-04 20:33:09,799 - DEBUG - % received keepalive pong
+2025-11-04 20:33:09,817 - DEBUG - < PING 01 8d 66 56 [binary, 4 bytes]
+2025-11-04 20:33:09,818 - DEBUG - > PONG 01 8d 66 56 [binary, 4 bytes]
+2025-11-04 20:33:29,798 - DEBUG - > PING d6 4c 8f c9 [binary, 4 bytes]
+2025-11-04 20:33:29,798 - DEBUG - % sent keepalive ping
+2025-11-04 20:33:29,799 - DEBUG - < PONG d6 4c 8f c9 [binary, 4 bytes]
+2025-11-04 20:33:29,799 - DEBUG - % received keepalive pong
+2025-11-04 20:33:29,819 - DEBUG - < PING 84 0a 97 e6 [binary, 4 bytes]
+2025-11-04 20:33:29,820 - DEBUG - > PONG 84 0a 97 e6 [binary, 4 bytes]
+2025-11-04 20:33:49,799 - DEBUG - > PING 1e 6c 9f 6a [binary, 4 bytes]
+2025-11-04 20:33:49,799 - DEBUG - % sent keepalive ping
+2025-11-04 20:33:49,800 - DEBUG - < PONG 1e 6c 9f 6a [binary, 4 bytes]
+2025-11-04 20:33:49,800 - DEBUG - % received keepalive pong
+2025-11-04 20:33:49,822 - DEBUG - < PING fa 55 dc 11 [binary, 4 bytes]
+2025-11-04 20:33:49,822 - DEBUG - > PONG fa 55 dc 11 [binary, 4 bytes]
+2025-11-04 20:34:09,782 - DEBUG - > PING 3e 41 b2 0d [binary, 4 bytes]
+2025-11-04 20:34:09,783 - DEBUG - % sent keepalive ping
+2025-11-04 20:34:09,783 - DEBUG - < PONG 3e 41 b2 0d [binary, 4 bytes]
+2025-11-04 20:34:09,783 - DEBUG - % received keepalive pong
+2025-11-04 20:34:09,807 - DEBUG - < PING 9e e8 92 f2 [binary, 4 bytes]
+2025-11-04 20:34:09,807 - DEBUG - > PONG 9e e8 92 f2 [binary, 4 bytes]
+2025-11-04 20:34:29,773 - DEBUG - > PING 4b 2d 6f cc [binary, 4 bytes]
+2025-11-04 20:34:29,774 - DEBUG - % sent keepalive ping
+2025-11-04 20:34:29,774 - DEBUG - < PONG 4b 2d 6f cc [binary, 4 bytes]
+2025-11-04 20:34:29,775 - DEBUG - % received keepalive pong
+2025-11-04 20:34:29,799 - DEBUG - < PING "ե'K" [text, 4 bytes]
+2025-11-04 20:34:29,800 - DEBUG - > PONG "ե'K" [text, 4 bytes]
+2025-11-04 20:34:49,770 - DEBUG - > PING d4 fc a1 46 [binary, 4 bytes]
+2025-11-04 20:34:49,771 - DEBUG - % sent keepalive ping
+2025-11-04 20:34:49,772 - DEBUG - < PONG d4 fc a1 46 [binary, 4 bytes]
+2025-11-04 20:34:49,773 - DEBUG - % received keepalive pong
+2025-11-04 20:34:49,799 - DEBUG - < PING 9d 9c 5a b9 [binary, 4 bytes]
+2025-11-04 20:34:49,800 - DEBUG - > PONG 9d 9c 5a b9 [binary, 4 bytes]
+2025-11-04 20:35:09,770 - DEBUG - > PING 39 9a e8 00 [binary, 4 bytes]
+2025-11-04 20:35:09,771 - DEBUG - % sent keepalive ping
+2025-11-04 20:35:09,771 - DEBUG - < PONG 39 9a e8 00 [binary, 4 bytes]
+2025-11-04 20:35:09,771 - DEBUG - % received keepalive pong
+2025-11-04 20:35:09,801 - DEBUG - < PING 41 85 e1 a8 [binary, 4 bytes]
+2025-11-04 20:35:09,801 - DEBUG - > PONG 41 85 e1 a8 [binary, 4 bytes]
+2025-11-04 20:35:29,770 - DEBUG - > PING 28 20 e5 f6 [binary, 4 bytes]
+2025-11-04 20:35:29,771 - DEBUG - % sent keepalive ping
+2025-11-04 20:35:29,771 - DEBUG - < PONG 28 20 e5 f6 [binary, 4 bytes]
+2025-11-04 20:35:29,771 - DEBUG - % received keepalive pong
+2025-11-04 20:35:29,802 - DEBUG - < PING cc 68 24 9b [binary, 4 bytes]
+2025-11-04 20:35:29,803 - DEBUG - > PONG cc 68 24 9b [binary, 4 bytes]
+2025-11-04 20:35:49,771 - DEBUG - > PING ea c8 a4 03 [binary, 4 bytes]
+2025-11-04 20:35:49,772 - DEBUG - % sent keepalive ping
+2025-11-04 20:35:49,772 - DEBUG - < PONG ea c8 a4 03 [binary, 4 bytes]
+2025-11-04 20:35:49,773 - DEBUG - % received keepalive pong
+2025-11-04 20:35:49,804 - DEBUG - < PING 22 d0 d2 72 [binary, 4 bytes]
+2025-11-04 20:35:49,804 - DEBUG - > PONG 22 d0 d2 72 [binary, 4 bytes]
+2025-11-04 20:36:09,771 - DEBUG - > PING 'z \x1e^' [text, 4 bytes]
+2025-11-04 20:36:09,772 - DEBUG - % sent keepalive ping
+2025-11-04 20:36:09,773 - DEBUG - < PONG 'z \x1e^' [text, 4 bytes]
+2025-11-04 20:36:09,773 - DEBUG - % received keepalive pong
+2025-11-04 20:36:09,806 - DEBUG - < PING a9 c8 04 a9 [binary, 4 bytes]
+2025-11-04 20:36:09,806 - DEBUG - > PONG a9 c8 04 a9 [binary, 4 bytes]
+2025-11-04 20:36:29,772 - DEBUG - > PING c8 99 ac 5b [binary, 4 bytes]
+2025-11-04 20:36:29,773 - DEBUG - % sent keepalive ping
+2025-11-04 20:36:29,774 - DEBUG - < PONG c8 99 ac 5b [binary, 4 bytes]
+2025-11-04 20:36:29,774 - DEBUG - % received keepalive pong
+2025-11-04 20:36:29,808 - DEBUG - < PING 65 9a e4 5d [binary, 4 bytes]
+2025-11-04 20:36:29,809 - DEBUG - > PONG 65 9a e4 5d [binary, 4 bytes]
+2025-11-04 20:36:49,773 - DEBUG - > PING e8 d9 ce 69 [binary, 4 bytes]
+2025-11-04 20:36:49,774 - DEBUG - % sent keepalive ping
+2025-11-04 20:36:49,774 - DEBUG - < PONG e8 d9 ce 69 [binary, 4 bytes]
+2025-11-04 20:36:49,775 - DEBUG - % received keepalive pong
+2025-11-04 20:36:49,811 - DEBUG - < PING 8f b9 2c 18 [binary, 4 bytes]
+2025-11-04 20:36:49,812 - DEBUG - > PONG 8f b9 2c 18 [binary, 4 bytes]
+2025-11-04 20:37:09,773 - DEBUG - > PING d2 49 57 c9 [binary, 4 bytes]
+2025-11-04 20:37:09,774 - DEBUG - % sent keepalive ping
+2025-11-04 20:37:09,774 - DEBUG - < PONG d2 49 57 c9 [binary, 4 bytes]
+2025-11-04 20:37:09,775 - DEBUG - % received keepalive pong
+2025-11-04 20:37:09,814 - DEBUG - < PING aa 18 d3 30 [binary, 4 bytes]
+2025-11-04 20:37:09,814 - DEBUG - > PONG aa 18 d3 30 [binary, 4 bytes]
+2025-11-04 20:37:29,774 - DEBUG - > PING af 6e e9 fb [binary, 4 bytes]
+2025-11-04 20:37:29,775 - DEBUG - % sent keepalive ping
+2025-11-04 20:37:29,776 - DEBUG - < PONG af 6e e9 fb [binary, 4 bytes]
+2025-11-04 20:37:29,776 - DEBUG - % received keepalive pong
+2025-11-04 20:37:29,818 - DEBUG - < PING 53 58 90 9a [binary, 4 bytes]
+2025-11-04 20:37:29,819 - DEBUG - > PONG 53 58 90 9a [binary, 4 bytes]
+2025-11-04 20:37:49,775 - DEBUG - > PING 83 d2 5b 64 [binary, 4 bytes]
+2025-11-04 20:37:49,775 - DEBUG - % sent keepalive ping
+2025-11-04 20:37:49,775 - DEBUG - < PONG 83 d2 5b 64 [binary, 4 bytes]
+2025-11-04 20:37:49,776 - DEBUG - % received keepalive pong
+2025-11-04 20:37:49,820 - DEBUG - < PING 33 d8 07 36 [binary, 4 bytes]
+2025-11-04 20:37:49,820 - DEBUG - > PONG 33 d8 07 36 [binary, 4 bytes]
+2025-11-04 20:38:09,775 - DEBUG - > PING b3 4e 8f d6 [binary, 4 bytes]
+2025-11-04 20:38:09,776 - DEBUG - % sent keepalive ping
+2025-11-04 20:38:09,776 - DEBUG - < PONG b3 4e 8f d6 [binary, 4 bytes]
+2025-11-04 20:38:09,777 - DEBUG - % received keepalive pong
+2025-11-04 20:38:09,821 - DEBUG - < PING fc 73 ce b7 [binary, 4 bytes]
+2025-11-04 20:38:09,822 - DEBUG - > PONG fc 73 ce b7 [binary, 4 bytes]
+2025-11-04 20:38:29,775 - DEBUG - > PING 8a f9 f0 40 [binary, 4 bytes]
+2025-11-04 20:38:29,776 - DEBUG - % sent keepalive ping
+2025-11-04 20:38:29,776 - DEBUG - < PONG 8a f9 f0 40 [binary, 4 bytes]
+2025-11-04 20:38:29,777 - DEBUG - % received keepalive pong
+2025-11-04 20:38:29,823 - DEBUG - < PING ' rRg' [text, 4 bytes]
+2025-11-04 20:38:29,824 - DEBUG - > PONG ' rRg' [text, 4 bytes]
+2025-11-04 20:38:49,775 - DEBUG - > PING 4d 8c 8f d6 [binary, 4 bytes]
+2025-11-04 20:38:49,776 - DEBUG - % sent keepalive ping
+2025-11-04 20:38:49,776 - DEBUG - < PONG 4d 8c 8f d6 [binary, 4 bytes]
+2025-11-04 20:38:49,777 - DEBUG - % received keepalive pong
+2025-11-04 20:38:49,826 - DEBUG - < PING be fd d0 1e [binary, 4 bytes]
+2025-11-04 20:38:49,827 - DEBUG - > PONG be fd d0 1e [binary, 4 bytes]
+2025-11-04 20:39:09,776 - DEBUG - > PING f5 c3 3c e9 [binary, 4 bytes]
+2025-11-04 20:39:09,777 - DEBUG - % sent keepalive ping
+2025-11-04 20:39:09,777 - DEBUG - < PONG f5 c3 3c e9 [binary, 4 bytes]
+2025-11-04 20:39:09,777 - DEBUG - % received keepalive pong
+2025-11-04 20:39:09,828 - DEBUG - < PING 2c 9b f0 3c [binary, 4 bytes]
+2025-11-04 20:39:09,829 - DEBUG - > PONG 2c 9b f0 3c [binary, 4 bytes]
+2025-11-04 20:39:29,776 - DEBUG - > PING af 64 94 5b [binary, 4 bytes]
+2025-11-04 20:39:29,777 - DEBUG - % sent keepalive ping
+2025-11-04 20:39:29,778 - DEBUG - < PONG af 64 94 5b [binary, 4 bytes]
+2025-11-04 20:39:29,778 - DEBUG - % received keepalive pong
+2025-11-04 20:39:29,829 - DEBUG - < PING d9 e8 55 4e [binary, 4 bytes]
+2025-11-04 20:39:29,830 - DEBUG - > PONG d9 e8 55 4e [binary, 4 bytes]
+2025-11-04 20:39:49,777 - DEBUG - > PING 01 0d ab b2 [binary, 4 bytes]
+2025-11-04 20:39:49,778 - DEBUG - % sent keepalive ping
+2025-11-04 20:39:49,778 - DEBUG - < PONG 01 0d ab b2 [binary, 4 bytes]
+2025-11-04 20:39:49,778 - DEBUG - % received keepalive pong
+2025-11-04 20:39:49,831 - DEBUG - < PING c6 13 d5 56 [binary, 4 bytes]
+2025-11-04 20:39:49,832 - DEBUG - > PONG c6 13 d5 56 [binary, 4 bytes]
+2025-11-04 20:40:09,777 - DEBUG - > PING 9e be 4f ec [binary, 4 bytes]
+2025-11-04 20:40:09,778 - DEBUG - % sent keepalive ping
+2025-11-04 20:40:09,778 - DEBUG - < PONG 9e be 4f ec [binary, 4 bytes]
+2025-11-04 20:40:09,779 - DEBUG - % received keepalive pong
+2025-11-04 20:40:09,833 - DEBUG - < PING 24 33 f2 12 [binary, 4 bytes]
+2025-11-04 20:40:09,834 - DEBUG - > PONG 24 33 f2 12 [binary, 4 bytes]
+2025-11-04 20:40:29,778 - DEBUG - > PING ad 22 5a 1c [binary, 4 bytes]
+2025-11-04 20:40:29,779 - DEBUG - % sent keepalive ping
+2025-11-04 20:40:29,779 - DEBUG - < PONG ad 22 5a 1c [binary, 4 bytes]
+2025-11-04 20:40:29,780 - DEBUG - % received keepalive pong
+2025-11-04 20:40:29,835 - DEBUG - < PING 7f 10 85 8d [binary, 4 bytes]
+2025-11-04 20:40:29,835 - DEBUG - > PONG 7f 10 85 8d [binary, 4 bytes]
+2025-11-04 20:40:49,779 - DEBUG - > PING '1\x10\x00-' [text, 4 bytes]
+2025-11-04 20:40:49,779 - DEBUG - % sent keepalive ping
+2025-11-04 20:40:49,780 - DEBUG - < PONG '1\x10\x00-' [text, 4 bytes]
+2025-11-04 20:40:49,780 - DEBUG - % received keepalive pong
+2025-11-04 20:40:49,837 - DEBUG - < PING c6 fa e5 be [binary, 4 bytes]
+2025-11-04 20:40:49,837 - DEBUG - > PONG c6 fa e5 be [binary, 4 bytes]
+2025-11-04 20:41:09,779 - DEBUG - > PING d1 71 f9 92 [binary, 4 bytes]
+2025-11-04 20:41:09,780 - DEBUG - % sent keepalive ping
+2025-11-04 20:41:09,780 - DEBUG - < PONG d1 71 f9 92 [binary, 4 bytes]
+2025-11-04 20:41:09,781 - DEBUG - % received keepalive pong
+2025-11-04 20:41:09,838 - DEBUG - < PING be ec af cd [binary, 4 bytes]
+2025-11-04 20:41:09,838 - DEBUG - > PONG be ec af cd [binary, 4 bytes]
+2025-11-04 20:41:29,779 - DEBUG - > PING 43 34 f3 d8 [binary, 4 bytes]
+2025-11-04 20:41:29,780 - DEBUG - % sent keepalive ping
+2025-11-04 20:41:29,780 - DEBUG - < PONG 43 34 f3 d8 [binary, 4 bytes]
+2025-11-04 20:41:29,780 - DEBUG - % received keepalive pong
+2025-11-04 20:41:29,838 - DEBUG - < PING 60 dc e7 cf [binary, 4 bytes]
+2025-11-04 20:41:29,839 - DEBUG - > PONG 60 dc e7 cf [binary, 4 bytes]
+2025-11-04 20:41:49,780 - DEBUG - > PING 1a 8c ca 95 [binary, 4 bytes]
+2025-11-04 20:41:49,781 - DEBUG - % sent keepalive ping
+2025-11-04 20:41:49,782 - DEBUG - < PONG 1a 8c ca 95 [binary, 4 bytes]
+2025-11-04 20:41:49,782 - DEBUG - % received keepalive pong
+2025-11-04 20:41:49,840 - DEBUG - < PING 7a 9f f8 b8 [binary, 4 bytes]
+2025-11-04 20:41:49,841 - DEBUG - > PONG 7a 9f f8 b8 [binary, 4 bytes]
+2025-11-04 20:42:09,781 - DEBUG - > PING ff d8 ce 16 [binary, 4 bytes]
+2025-11-04 20:42:09,781 - DEBUG - % sent keepalive ping
+2025-11-04 20:42:09,782 - DEBUG - < PONG ff d8 ce 16 [binary, 4 bytes]
+2025-11-04 20:42:09,782 - DEBUG - % received keepalive pong
+2025-11-04 20:42:09,843 - DEBUG - < PING 44 72 84 ec [binary, 4 bytes]
+2025-11-04 20:42:09,843 - DEBUG - > PONG 44 72 84 ec [binary, 4 bytes]
+2025-11-04 20:42:29,781 - DEBUG - > PING 18 cc 7c 2e [binary, 4 bytes]
+2025-11-04 20:42:29,782 - DEBUG - % sent keepalive ping
+2025-11-04 20:42:29,782 - DEBUG - < PONG 18 cc 7c 2e [binary, 4 bytes]
+2025-11-04 20:42:29,782 - DEBUG - % received keepalive pong
+2025-11-04 20:42:29,845 - DEBUG - < PING f3 79 a1 69 [binary, 4 bytes]
+2025-11-04 20:42:29,845 - DEBUG - > PONG f3 79 a1 69 [binary, 4 bytes]
+2025-11-04 20:42:49,782 - DEBUG - > PING 4e 14 13 a4 [binary, 4 bytes]
+2025-11-04 20:42:49,782 - DEBUG - % sent keepalive ping
+2025-11-04 20:42:49,783 - DEBUG - < PONG 4e 14 13 a4 [binary, 4 bytes]
+2025-11-04 20:42:49,783 - DEBUG - % received keepalive pong
+2025-11-04 20:42:49,847 - DEBUG - < PING 13 ea 52 42 [binary, 4 bytes]
+2025-11-04 20:42:49,847 - DEBUG - > PONG 13 ea 52 42 [binary, 4 bytes]
+2025-11-04 20:43:09,782 - DEBUG - > PING '\x02_o\x00' [text, 4 bytes]
+2025-11-04 20:43:09,783 - DEBUG - % sent keepalive ping
+2025-11-04 20:43:09,783 - DEBUG - < PONG '\x02_o\x00' [text, 4 bytes]
+2025-11-04 20:43:09,783 - DEBUG - % received keepalive pong
+2025-11-04 20:43:09,849 - DEBUG - < PING b7 ea 18 e2 [binary, 4 bytes]
+2025-11-04 20:43:09,850 - DEBUG - > PONG b7 ea 18 e2 [binary, 4 bytes]
+2025-11-04 20:43:29,782 - DEBUG - > PING '\x03lڎ' [text, 4 bytes]
+2025-11-04 20:43:29,783 - DEBUG - % sent keepalive ping
+2025-11-04 20:43:29,783 - DEBUG - < PONG '\x03lڎ' [text, 4 bytes]
+2025-11-04 20:43:29,784 - DEBUG - % received keepalive pong
+2025-11-04 20:43:29,851 - DEBUG - < PING 65 a5 12 dd [binary, 4 bytes]
+2025-11-04 20:43:29,851 - DEBUG - > PONG 65 a5 12 dd [binary, 4 bytes]
+2025-11-04 20:43:49,782 - DEBUG - > PING 84 06 fe 29 [binary, 4 bytes]
+2025-11-04 20:43:49,783 - DEBUG - % sent keepalive ping
+2025-11-04 20:43:49,784 - DEBUG - < PONG 84 06 fe 29 [binary, 4 bytes]
+2025-11-04 20:43:49,784 - DEBUG - % received keepalive pong
+2025-11-04 20:43:49,853 - DEBUG - < PING cb 05 ff 22 [binary, 4 bytes]
+2025-11-04 20:43:49,853 - DEBUG - > PONG cb 05 ff 22 [binary, 4 bytes]
+2025-11-04 20:44:09,783 - DEBUG - > PING 8a 4b a1 2e [binary, 4 bytes]
+2025-11-04 20:44:09,784 - DEBUG - % sent keepalive ping
+2025-11-04 20:44:09,784 - DEBUG - < PONG 8a 4b a1 2e [binary, 4 bytes]
+2025-11-04 20:44:09,784 - DEBUG - % received keepalive pong
+2025-11-04 20:44:09,855 - DEBUG - < PING 80 6d 9d f8 [binary, 4 bytes]
+2025-11-04 20:44:09,855 - DEBUG - > PONG 80 6d 9d f8 [binary, 4 bytes]
+2025-11-04 20:44:29,783 - DEBUG - > PING fb b5 5e a3 [binary, 4 bytes]
+2025-11-04 20:44:29,783 - DEBUG - % sent keepalive ping
+2025-11-04 20:44:29,784 - DEBUG - < PONG fb b5 5e a3 [binary, 4 bytes]
+2025-11-04 20:44:29,784 - DEBUG - % received keepalive pong
+2025-11-04 20:44:29,857 - DEBUG - < PING d8 2f a1 91 [binary, 4 bytes]
+2025-11-04 20:44:29,857 - DEBUG - > PONG d8 2f a1 91 [binary, 4 bytes]
+2025-11-04 20:44:49,783 - DEBUG - > PING 60 2d 70 e5 [binary, 4 bytes]
+2025-11-04 20:44:49,784 - DEBUG - % sent keepalive ping
+2025-11-04 20:44:49,784 - DEBUG - < PONG 60 2d 70 e5 [binary, 4 bytes]
+2025-11-04 20:44:49,784 - DEBUG - % received keepalive pong
+2025-11-04 20:44:49,859 - DEBUG - < PING fa f0 3e b8 [binary, 4 bytes]
+2025-11-04 20:44:49,859 - DEBUG - > PONG fa f0 3e b8 [binary, 4 bytes]
+2025-11-04 20:45:09,783 - DEBUG - > PING b2 4b 09 69 [binary, 4 bytes]
+2025-11-04 20:45:09,784 - DEBUG - % sent keepalive ping
+2025-11-04 20:45:09,784 - DEBUG - < PONG b2 4b 09 69 [binary, 4 bytes]
+2025-11-04 20:45:09,784 - DEBUG - % received keepalive pong
+2025-11-04 20:45:09,860 - DEBUG - < PING a1 86 6f 1a [binary, 4 bytes]
+2025-11-04 20:45:09,861 - DEBUG - > PONG a1 86 6f 1a [binary, 4 bytes]
+2025-11-04 20:45:29,784 - DEBUG - > PING eb bf 7b 2d [binary, 4 bytes]
+2025-11-04 20:45:29,784 - DEBUG - % sent keepalive ping
+2025-11-04 20:45:29,785 - DEBUG - < PONG eb bf 7b 2d [binary, 4 bytes]
+2025-11-04 20:45:29,785 - DEBUG - % received keepalive pong
+2025-11-04 20:45:29,863 - DEBUG - < PING 95 ef f4 dd [binary, 4 bytes]
+2025-11-04 20:45:29,864 - DEBUG - > PONG 95 ef f4 dd [binary, 4 bytes]
+2025-11-04 20:45:49,784 - DEBUG - > PING '+\x08X\x00' [text, 4 bytes]
+2025-11-04 20:45:49,785 - DEBUG - % sent keepalive ping
+2025-11-04 20:45:49,785 - DEBUG - < PONG '+\x08X\x00' [text, 4 bytes]
+2025-11-04 20:45:49,786 - DEBUG - % received keepalive pong
+2025-11-04 20:45:49,865 - DEBUG - < PING 29 78 b6 da [binary, 4 bytes]
+2025-11-04 20:45:49,866 - DEBUG - > PONG 29 78 b6 da [binary, 4 bytes]
+2025-11-04 20:46:09,785 - DEBUG - > PING a1 af b8 9c [binary, 4 bytes]
+2025-11-04 20:46:09,785 - DEBUG - % sent keepalive ping
+2025-11-04 20:46:09,786 - DEBUG - < PONG a1 af b8 9c [binary, 4 bytes]
+2025-11-04 20:46:09,786 - DEBUG - % received keepalive pong
+2025-11-04 20:46:09,868 - DEBUG - < PING 6a 9a 27 92 [binary, 4 bytes]
+2025-11-04 20:46:09,868 - DEBUG - > PONG 6a 9a 27 92 [binary, 4 bytes]
+2025-11-04 20:46:29,785 - DEBUG - > PING 7f 7d ee 7a [binary, 4 bytes]
+2025-11-04 20:46:29,786 - DEBUG - % sent keepalive ping
+2025-11-04 20:46:29,786 - DEBUG - < PONG 7f 7d ee 7a [binary, 4 bytes]
+2025-11-04 20:46:29,787 - DEBUG - % received keepalive pong
+2025-11-04 20:46:29,868 - DEBUG - < PING 09 64 eb 0c [binary, 4 bytes]
+2025-11-04 20:46:29,868 - DEBUG - > PONG 09 64 eb 0c [binary, 4 bytes]
+2025-11-04 20:46:49,786 - DEBUG - > PING 00 85 14 97 [binary, 4 bytes]
+2025-11-04 20:46:49,787 - DEBUG - % sent keepalive ping
+2025-11-04 20:46:49,787 - DEBUG - < PONG 00 85 14 97 [binary, 4 bytes]
+2025-11-04 20:46:49,787 - DEBUG - % received keepalive pong
+2025-11-04 20:46:49,870 - DEBUG - < PING cd 2b 93 33 [binary, 4 bytes]
+2025-11-04 20:46:49,870 - DEBUG - > PONG cd 2b 93 33 [binary, 4 bytes]
+2025-11-04 20:47:09,786 - DEBUG - > PING 8d 19 07 3a [binary, 4 bytes]
+2025-11-04 20:47:09,786 - DEBUG - % sent keepalive ping
+2025-11-04 20:47:09,787 - DEBUG - < PONG 8d 19 07 3a [binary, 4 bytes]
+2025-11-04 20:47:09,787 - DEBUG - % received keepalive pong
+2025-11-04 20:47:09,871 - DEBUG - < PING 'Ʈ<6' [text, 4 bytes]
+2025-11-04 20:47:09,871 - DEBUG - > PONG 'Ʈ<6' [text, 4 bytes]
+2025-11-04 20:47:29,787 - DEBUG - > PING '\x1f䚩' [text, 4 bytes]
+2025-11-04 20:47:29,787 - DEBUG - % sent keepalive ping
+2025-11-04 20:47:29,788 - DEBUG - < PONG '\x1f䚩' [text, 4 bytes]
+2025-11-04 20:47:29,788 - DEBUG - % received keepalive pong
+2025-11-04 20:47:29,872 - DEBUG - < PING 49 f9 6d d5 [binary, 4 bytes]
+2025-11-04 20:47:29,872 - DEBUG - > PONG 49 f9 6d d5 [binary, 4 bytes]
+2025-11-04 20:47:49,787 - DEBUG - > PING 86 e8 f2 d0 [binary, 4 bytes]
+2025-11-04 20:47:49,788 - DEBUG - % sent keepalive ping
+2025-11-04 20:47:49,789 - DEBUG - < PONG 86 e8 f2 d0 [binary, 4 bytes]
+2025-11-04 20:47:49,789 - DEBUG - % received keepalive pong
+2025-11-04 20:47:49,874 - DEBUG - < PING c1 32 2c 90 [binary, 4 bytes]
+2025-11-04 20:47:49,874 - DEBUG - > PONG c1 32 2c 90 [binary, 4 bytes]
+2025-11-04 20:48:09,788 - DEBUG - > PING a8 e5 01 f5 [binary, 4 bytes]
+2025-11-04 20:48:09,789 - DEBUG - % sent keepalive ping
+2025-11-04 20:48:09,789 - DEBUG - < PONG a8 e5 01 f5 [binary, 4 bytes]
+2025-11-04 20:48:09,789 - DEBUG - % received keepalive pong
+2025-11-04 20:48:09,875 - DEBUG - < PING 20 d1 e6 56 [binary, 4 bytes]
+2025-11-04 20:48:09,875 - DEBUG - > PONG 20 d1 e6 56 [binary, 4 bytes]
+2025-11-04 20:48:29,789 - DEBUG - > PING f7 cd 12 aa [binary, 4 bytes]
+2025-11-04 20:48:29,789 - DEBUG - % sent keepalive ping
+2025-11-04 20:48:29,790 - DEBUG - < PONG f7 cd 12 aa [binary, 4 bytes]
+2025-11-04 20:48:29,790 - DEBUG - % received keepalive pong
+2025-11-04 20:48:29,877 - DEBUG - < PING 13 ba 7d 50 [binary, 4 bytes]
+2025-11-04 20:48:29,877 - DEBUG - > PONG 13 ba 7d 50 [binary, 4 bytes]
+2025-11-04 20:48:49,790 - DEBUG - > PING ad 7a e4 f2 [binary, 4 bytes]
+2025-11-04 20:48:49,791 - DEBUG - % sent keepalive ping
+2025-11-04 20:48:49,792 - DEBUG - < PONG ad 7a e4 f2 [binary, 4 bytes]
+2025-11-04 20:48:49,792 - DEBUG - % received keepalive pong
+2025-11-04 20:48:49,878 - DEBUG - < PING '%AC\x13' [text, 4 bytes]
+2025-11-04 20:48:49,879 - DEBUG - > PONG '%AC\x13' [text, 4 bytes]
+2025-11-04 20:49:05,227 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:49:11,039 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:49:11,042 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c0c23c0>
+2025-11-04 20:49:11,042 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:49:11,042 - DEBUG - send_request_headers.complete
+2025-11-04 20:49:11,042 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:49:11,042 - DEBUG - send_request_body.complete
+2025-11-04 20:49:11,043 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:49:11,278 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:49:10 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:49:11,278 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:49:11,279 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:49:11,279 - DEBUG - receive_response_body.complete
+2025-11-04 20:49:11,279 - DEBUG - response_closed.started
+2025-11-04 20:49:11,279 - DEBUG - response_closed.complete
+2025-11-04 20:49:11,279 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:49:11,279 - DEBUG - send_request_headers.complete
+2025-11-04 20:49:11,279 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:49:11,279 - DEBUG - send_request_body.complete
+2025-11-04 20:49:11,279 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:49:11,280 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:49:10 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:49:11,280 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:49:11,280 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:49:11,280 - DEBUG - receive_response_body.complete
+2025-11-04 20:49:11,280 - DEBUG - response_closed.started
+2025-11-04 20:49:11,280 - DEBUG - response_closed.complete
+2025-11-04 20:49:11,280 - DEBUG - close.started
+2025-11-04 20:49:11,281 - DEBUG - close.complete
+2025-11-04 20:51:19,943 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:51:25,351 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:51:25,354 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x108bde3c0>
+2025-11-04 20:51:25,354 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:51:25,354 - DEBUG - send_request_headers.complete
+2025-11-04 20:51:25,354 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:51:25,354 - DEBUG - send_request_body.complete
+2025-11-04 20:51:25,354 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:51:25,590 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:51:24 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:51:25,590 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:51:25,590 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:51:25,591 - DEBUG - receive_response_body.complete
+2025-11-04 20:51:25,591 - DEBUG - response_closed.started
+2025-11-04 20:51:25,591 - DEBUG - response_closed.complete
+2025-11-04 20:51:25,591 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:51:25,591 - DEBUG - send_request_headers.complete
+2025-11-04 20:51:25,591 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:51:25,591 - DEBUG - send_request_body.complete
+2025-11-04 20:51:25,591 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:51:25,592 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:51:24 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:51:25,592 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:51:25,592 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:51:25,592 - DEBUG - receive_response_body.complete
+2025-11-04 20:51:25,592 - DEBUG - response_closed.started
+2025-11-04 20:51:25,592 - DEBUG - response_closed.complete
+2025-11-04 20:51:25,592 - DEBUG - close.started
+2025-11-04 20:51:25,592 - DEBUG - close.complete
+2025-11-04 20:51:25,658 - INFO - DockDashboardScreen mount started
+2025-11-04 20:52:37,829 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:52:43,245 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:52:43,248 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c40e3c0>
+2025-11-04 20:52:43,248 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:52:43,248 - DEBUG - send_request_headers.complete
+2025-11-04 20:52:43,248 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:52:43,248 - DEBUG - send_request_body.complete
+2025-11-04 20:52:43,248 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:52:43,491 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:52:42 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:52:43,492 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:52:43,492 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:52:43,492 - DEBUG - receive_response_body.complete
+2025-11-04 20:52:43,492 - DEBUG - response_closed.started
+2025-11-04 20:52:43,492 - DEBUG - response_closed.complete
+2025-11-04 20:52:43,492 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:52:43,492 - DEBUG - send_request_headers.complete
+2025-11-04 20:52:43,492 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:52:43,492 - DEBUG - send_request_body.complete
+2025-11-04 20:52:43,492 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:52:43,493 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:52:42 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:52:43,494 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:52:43,494 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:52:43,494 - DEBUG - receive_response_body.complete
+2025-11-04 20:52:43,494 - DEBUG - response_closed.started
+2025-11-04 20:52:43,494 - DEBUG - response_closed.complete
+2025-11-04 20:52:43,494 - DEBUG - close.started
+2025-11-04 20:52:43,494 - DEBUG - close.complete
+2025-11-04 20:52:43,529 - INFO - DockDashboardScreen mount started
+2025-11-04 20:54:06,326 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:54:11,152 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:54:11,155 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10cae63c0>
+2025-11-04 20:54:11,155 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:54:11,156 - DEBUG - send_request_headers.complete
+2025-11-04 20:54:11,156 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:54:11,156 - DEBUG - send_request_body.complete
+2025-11-04 20:54:11,156 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:54:11,391 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:54:10 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:54:11,391 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:54:11,391 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:54:11,392 - DEBUG - receive_response_body.complete
+2025-11-04 20:54:11,392 - DEBUG - response_closed.started
+2025-11-04 20:54:11,392 - DEBUG - response_closed.complete
+2025-11-04 20:54:11,392 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:54:11,392 - DEBUG - send_request_headers.complete
+2025-11-04 20:54:11,392 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:54:11,392 - DEBUG - send_request_body.complete
+2025-11-04 20:54:11,392 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:54:11,393 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:54:10 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:54:11,393 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:54:11,393 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:54:11,393 - DEBUG - receive_response_body.complete
+2025-11-04 20:54:11,393 - DEBUG - response_closed.started
+2025-11-04 20:54:11,393 - DEBUG - response_closed.complete
+2025-11-04 20:54:11,393 - DEBUG - close.started
+2025-11-04 20:54:11,393 - DEBUG - close.complete
+2025-11-04 20:54:11,429 - INFO - DockDashboardScreen mount started
+2025-11-04 20:54:11,434 - DEBUG - = connection is CONNECTING
+2025-11-04 20:54:11,434 - DEBUG - > GET /api/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGRjZG9jay5jb20iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3NjIzNzI0NTF9.CCRLIOIAtvrUdLJJ0Us5IlFhuBVmPgc65Dqj6OSZ-fE HTTP/1.1
+2025-11-04 20:54:11,434 - DEBUG - > Host: localhost:8000
+2025-11-04 20:54:11,434 - DEBUG - > Upgrade: websocket
+2025-11-04 20:54:11,434 - DEBUG - > Connection: Upgrade
+2025-11-04 20:54:11,434 - DEBUG - > Sec-WebSocket-Key: 3X5LSsoTvI8aZdZ+hmfdAA==
+2025-11-04 20:54:11,434 - DEBUG - > Sec-WebSocket-Version: 13
+2025-11-04 20:54:11,434 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-11-04 20:54:11,434 - DEBUG - > User-Agent: Python/3.14 websockets/15.0.1
+2025-11-04 20:54:11,435 - DEBUG - < HTTP/1.1 101 Switching Protocols
+2025-11-04 20:54:11,435 - DEBUG - < Upgrade: websocket
+2025-11-04 20:54:11,435 - DEBUG - < Connection: Upgrade
+2025-11-04 20:54:11,435 - DEBUG - < Sec-WebSocket-Accept: tP2E59FPr28Gru2VrqbAwnK+Qa8=
+2025-11-04 20:54:11,435 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate
+2025-11-04 20:54:11,435 - DEBUG - < date: Tue, 04 Nov 2025 19:54:10 GMT
+2025-11-04 20:54:11,435 - DEBUG - < server: uvicorn
+2025-11-04 20:54:11,435 - DEBUG - = connection is OPEN
+2025-11-04 20:54:11,435 - DEBUG - < TEXT '{"type":"connection_ack","timestamp":"2025-11-0...ock real-time updates"}' [148 bytes]
+2025-11-04 20:54:11,435 - INFO - Refreshing dashboard data
+2025-11-04 20:54:11,440 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:54:11,441 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10cce82d0>
+2025-11-04 20:54:11,441 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:54:11,442 - DEBUG - send_request_headers.complete
+2025-11-04 20:54:11,442 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:54:11,442 - DEBUG - send_request_body.complete
+2025-11-04 20:54:11,442 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:54:11,443 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:54:10 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1257'), (b'content-type', b'application/json')])
+2025-11-04 20:54:11,443 - INFO - HTTP Request: GET http://localhost:8000/api/ramps/ "HTTP/1.1 200 OK"
+2025-11-04 20:54:11,443 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:54:11,443 - DEBUG - receive_response_body.complete
+2025-11-04 20:54:11,443 - DEBUG - response_closed.started
+2025-11-04 20:54:11,443 - DEBUG - response_closed.complete
+2025-11-04 20:54:11,444 - DEBUG - close.started
+2025-11-04 20:54:11,444 - DEBUG - close.complete
+2025-11-04 20:54:11,448 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=30.0 socket_options=None
+2025-11-04 20:54:11,449 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10cce96d0>
+2025-11-04 20:54:11,449 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:54:11,449 - DEBUG - send_request_headers.complete
+2025-11-04 20:54:11,449 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:54:11,449 - DEBUG - send_request_body.complete
+2025-11-04 20:54:11,449 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:54:11,453 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:54:10 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1262'), (b'content-type', b'application/json')])
+2025-11-04 20:54:11,453 - INFO - HTTP Request: GET http://localhost:8000/api/assignments/ "HTTP/1.1 200 OK"
+2025-11-04 20:54:11,453 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:54:11,453 - DEBUG - receive_response_body.complete
+2025-11-04 20:54:11,453 - DEBUG - response_closed.started
+2025-11-04 20:54:11,453 - DEBUG - response_closed.complete
+2025-11-04 20:54:11,453 - DEBUG - close.started
+2025-11-04 20:54:11,453 - DEBUG - close.complete
+2025-11-04 20:56:15,672 - DEBUG - Using selector: KqueueSelector
+2025-11-04 20:56:20,486 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:56:20,489 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10ca263c0>
+2025-11-04 20:56:20,489 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 20:56:20,489 - DEBUG - send_request_headers.complete
+2025-11-04 20:56:20,489 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 20:56:20,489 - DEBUG - send_request_body.complete
+2025-11-04 20:56:20,489 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 20:56:20,724 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:56:20 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 20:56:20,725 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 20:56:20,725 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 20:56:20,725 - DEBUG - receive_response_body.complete
+2025-11-04 20:56:20,725 - DEBUG - response_closed.started
+2025-11-04 20:56:20,725 - DEBUG - response_closed.complete
+2025-11-04 20:56:20,725 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:56:20,725 - DEBUG - send_request_headers.complete
+2025-11-04 20:56:20,725 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:56:20,725 - DEBUG - send_request_body.complete
+2025-11-04 20:56:20,725 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:56:20,726 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:56:20 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 20:56:20,726 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 20:56:20,726 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:56:20,727 - DEBUG - receive_response_body.complete
+2025-11-04 20:56:20,727 - DEBUG - response_closed.started
+2025-11-04 20:56:20,727 - DEBUG - response_closed.complete
+2025-11-04 20:56:20,727 - DEBUG - close.started
+2025-11-04 20:56:20,727 - DEBUG - close.complete
+2025-11-04 20:56:20,762 - INFO - DockDashboardScreen mount started
+2025-11-04 20:56:20,768 - DEBUG - = connection is CONNECTING
+2025-11-04 20:56:20,768 - DEBUG - > GET /api/ws?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGRjZG9jay5jb20iLCJyb2xlIjoiQURNSU4iLCJleHAiOjE3NjIzNzI1ODB9.sbYObE7w8uU23Rl8C0y-FT0uIQW0OBtO3MywKkX_j54 HTTP/1.1
+2025-11-04 20:56:20,768 - DEBUG - > Host: localhost:8000
+2025-11-04 20:56:20,768 - DEBUG - > Upgrade: websocket
+2025-11-04 20:56:20,768 - DEBUG - > Connection: Upgrade
+2025-11-04 20:56:20,768 - DEBUG - > Sec-WebSocket-Key: vxqUV8V+wjc5lH4wDmSxuA==
+2025-11-04 20:56:20,768 - DEBUG - > Sec-WebSocket-Version: 13
+2025-11-04 20:56:20,768 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+2025-11-04 20:56:20,768 - DEBUG - > User-Agent: Python/3.14 websockets/15.0.1
+2025-11-04 20:56:20,769 - DEBUG - < HTTP/1.1 101 Switching Protocols
+2025-11-04 20:56:20,769 - DEBUG - < Upgrade: websocket
+2025-11-04 20:56:20,769 - DEBUG - < Connection: Upgrade
+2025-11-04 20:56:20,769 - DEBUG - < Sec-WebSocket-Accept: jQ3pv/MWDscE+I8VjsPtctlL1LM=
+2025-11-04 20:56:20,769 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate
+2025-11-04 20:56:20,769 - DEBUG - < date: Tue, 04 Nov 2025 19:56:20 GMT
+2025-11-04 20:56:20,769 - DEBUG - < server: uvicorn
+2025-11-04 20:56:20,769 - DEBUG - = connection is OPEN
+2025-11-04 20:56:20,769 - DEBUG - < TEXT '{"type":"connection_ack","timestamp":"2025-11-0...ock real-time updates"}' [148 bytes]
+2025-11-04 20:56:20,769 - INFO - Refreshing dashboard data
+2025-11-04 20:56:20,774 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 20:56:20,775 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10cc342d0>
+2025-11-04 20:56:20,776 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:56:20,776 - DEBUG - send_request_headers.complete
+2025-11-04 20:56:20,776 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:56:20,776 - DEBUG - send_request_body.complete
+2025-11-04 20:56:20,776 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:56:20,777 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:56:20 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1257'), (b'content-type', b'application/json')])
+2025-11-04 20:56:20,777 - INFO - HTTP Request: GET http://localhost:8000/api/ramps/ "HTTP/1.1 200 OK"
+2025-11-04 20:56:20,777 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:56:20,777 - DEBUG - receive_response_body.complete
+2025-11-04 20:56:20,777 - DEBUG - response_closed.started
+2025-11-04 20:56:20,777 - DEBUG - response_closed.complete
+2025-11-04 20:56:20,778 - DEBUG - close.started
+2025-11-04 20:56:20,778 - DEBUG - close.complete
+2025-11-04 20:56:20,782 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=30.0 socket_options=None
+2025-11-04 20:56:20,783 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10cc356d0>
+2025-11-04 20:56:20,783 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 20:56:20,783 - DEBUG - send_request_headers.complete
+2025-11-04 20:56:20,783 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 20:56:20,783 - DEBUG - send_request_body.complete
+2025-11-04 20:56:20,783 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 20:56:20,787 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 19:56:20 GMT'), (b'server', b'uvicorn'), (b'content-length', b'1262'), (b'content-type', b'application/json')])
+2025-11-04 20:56:20,787 - INFO - HTTP Request: GET http://localhost:8000/api/assignments/ "HTTP/1.1 200 OK"
+2025-11-04 20:56:20,787 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 20:56:20,787 - DEBUG - receive_response_body.complete
+2025-11-04 20:56:20,787 - DEBUG - response_closed.started
+2025-11-04 20:56:20,787 - DEBUG - response_closed.complete
+2025-11-04 20:56:20,787 - DEBUG - close.started
+2025-11-04 20:56:20,787 - DEBUG - close.complete
+2025-11-04 20:56:20,789 - INFO - DockDashboardScreen mount completed
+2025-11-04 20:56:40,769 - DEBUG - > PING cf 55 ed 51 [binary, 4 bytes]
+2025-11-04 20:56:40,770 - DEBUG - % sent keepalive ping
+2025-11-04 20:56:40,771 - DEBUG - < PING 01 81 a0 e2 [binary, 4 bytes]
+2025-11-04 20:56:40,771 - DEBUG - > PONG 01 81 a0 e2 [binary, 4 bytes]
+2025-11-04 20:56:40,771 - DEBUG - < PONG cf 55 ed 51 [binary, 4 bytes]
+2025-11-04 20:56:40,771 - DEBUG - % received keepalive pong
+2025-11-04 20:56:42,774 - DEBUG - > CLOSE 1000 (OK) [2 bytes]
+2025-11-04 20:56:42,774 - DEBUG - = connection is CLOSING
+2025-11-04 20:56:42,775 - DEBUG - < CLOSE 1000 (OK) [2 bytes]
+2025-11-04 20:56:42,775 - DEBUG - < EOF
+2025-11-04 20:56:42,775 - DEBUG - > EOF
+2025-11-04 20:56:42,775 - DEBUG - = connection is CLOSED
+2025-11-04 20:56:42,775 - DEBUG - x half-closing TCP connection
+2025-11-04 21:03:32,388 - DEBUG - Using selector: KqueueSelector
+2025-11-04 21:03:38,598 - DEBUG - connect_tcp.started host='localhost' port=8000 local_address=None timeout=5.0 socket_options=None
+2025-11-04 21:03:38,601 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x10c4ce7b0>
+2025-11-04 21:03:38,601 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-11-04 21:03:38,601 - DEBUG - send_request_headers.complete
+2025-11-04 21:03:38,601 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-11-04 21:03:38,602 - DEBUG - send_request_body.complete
+2025-11-04 21:03:38,602 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-11-04 21:03:38,840 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 20:03:38 GMT'), (b'server', b'uvicorn'), (b'content-length', b'218'), (b'content-type', b'application/json')])
+2025-11-04 21:03:38,840 - INFO - HTTP Request: POST http://localhost:8000/api/auth/login "HTTP/1.1 200 OK"
+2025-11-04 21:03:38,840 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-11-04 21:03:38,840 - DEBUG - receive_response_body.complete
+2025-11-04 21:03:38,841 - DEBUG - response_closed.started
+2025-11-04 21:03:38,841 - DEBUG - response_closed.complete
+2025-11-04 21:03:38,841 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-11-04 21:03:38,841 - DEBUG - send_request_headers.complete
+2025-11-04 21:03:38,841 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-11-04 21:03:38,841 - DEBUG - send_request_body.complete
+2025-11-04 21:03:38,841 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-11-04 21:03:38,842 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'date', b'Tue, 04 Nov 2025 20:03:38 GMT'), (b'server', b'uvicorn'), (b'content-length', b'188'), (b'content-type', b'application/json')])
+2025-11-04 21:03:38,842 - INFO - HTTP Request: GET http://localhost:8000/api/users/me "HTTP/1.1 200 OK"
+2025-11-04 21:03:38,842 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-11-04 21:03:38,842 - DEBUG - receive_response_body.complete
+2025-11-04 21:03:38,842 - DEBUG - response_closed.started
+2025-11-04 21:03:38,842 - DEBUG - response_closed.complete
+2025-11-04 21:03:38,842 - DEBUG - close.started
+2025-11-04 21:03:38,842 - DEBUG - close.complete

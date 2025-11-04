@@ -33,9 +33,20 @@ class WebSocketClient:
             raise ValueError("Token not set")
 
         uri = f"{self.base_url}/api/ws?token={self.token}"
-        self.websocket = await websockets.connect(uri)
-        self.running = True
-        self._task = asyncio.create_task(self._listen())
+        try:
+            # Add timeout to prevent hanging
+            self.websocket = await asyncio.wait_for(
+                websockets.connect(uri),
+                timeout=10.0
+            )
+            self.running = True
+            self._task = asyncio.create_task(self._listen())
+        except asyncio.TimeoutError:
+            print(f"WebSocket connection timeout to {uri}")
+            raise
+        except Exception as e:
+            print(f"WebSocket connection failed: {e}")
+            raise
 
     async def _listen(self) -> None:
         """Listen for WebSocket messages."""

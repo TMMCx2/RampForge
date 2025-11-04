@@ -1,0 +1,2 @@
+[console_scripts]
+dcdock = app.main:main

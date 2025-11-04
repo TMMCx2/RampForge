@@ -67,15 +67,20 @@ class APIClient:
     async def get_assignments(self, direction: Optional[str] = None) -> List[Dict[str, Any]]:
         """Get all assignments."""
         params = {"direction": direction} if direction else {}
-        async with httpx.AsyncClient() as client:
-            response = await client.get(
-                f"{self.base_url}/api/assignments/",
-                headers=self._headers(),
-                params=params,
-            )
-            if response.status_code != 200:
-                raise APIError(response.status_code, response.text)
-            return response.json()
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            try:
+                response = await client.get(
+                    f"{self.base_url}/api/assignments/",
+                    headers=self._headers(),
+                    params=params,
+                )
+                if response.status_code != 200:
+                    print(f"API Error: {response.status_code} - {response.text}")
+                    raise APIError(response.status_code, response.text)
+                return response.json()
+            except Exception as e:
+                print(f"Failed to get assignments: {e}")
+                raise
 
     async def get_assignment(self, assignment_id: int) -> Dict[str, Any]:
         """Get assignment by ID."""

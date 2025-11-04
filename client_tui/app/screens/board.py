@@ -1,4 +1,5 @@
 """Main board screen for assignments."""
+import logging
 from typing import Any, Dict, List, Optional
 
 from textual.app import ComposeResult
@@ -7,6 +8,18 @@ from textual.screen import Screen
 from textual.widgets import Button, DataTable, Footer, Header, Label, Static
 
 from app.services import APIClient, WebSocketClient
+from app.widgets.modals import CreateAssignmentModal, EditAssignmentModal
+from app.widgets import StatsPanel
+
+# Setup logging
+import os
+log_file = os.path.join(os.path.dirname(__file__), '..', '..', 'client_debug.log')
+logging.basicConfig(
+    filename=log_file,
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 
 class BoardScreen(Screen):
@@ -22,11 +35,11 @@ class BoardScreen(Screen):
         height: 3;
         background: $boost;
         padding: 0 2;
-        align-horizontal: space-between;
+        layout: horizontal;
     }
 
     #user-info {
-        width: auto;
+        width: 1fr;
         height: 100%;
         content-align: left middle;
         color: $text;
@@ -35,7 +48,8 @@ class BoardScreen(Screen):
     #filter-container {
         width: auto;
         height: 100%;
-        align-horizontal: right;
+        layout: horizontal;
+        align: right middle;
     }
 
     .filter-button {
@@ -49,9 +63,15 @@ class BoardScreen(Screen):
         padding: 0 2;
     }
 
-    #assignments-table {
+    #main-content {
         width: 100%;
         height: 1fr;
+        layout: horizontal;
+    }
+
+    #assignments-table {
+        width: 1fr;
+        height: 100%;
     }
 
     Footer {
@@ -62,6 +82,7 @@ class BoardScreen(Screen):
     BINDINGS = [
         ("r", "refresh", "Refresh"),
         ("n", "new_assignment", "New"),
+        ("e", "edit_assignment", "Edit"),
         ("d", "delete_assignment", "Delete"),
         ("1", "filter_all", "All"),
         ("2", "filter_ib", "Inbound"),
@@ -96,26 +117,41 @@ class BoardScreen(Screen):
                 yield Button("Inbound", id="filter-ib", classes="filter-button")
                 yield Button("Outbound", id="filter-ob", classes="filter-button")
         yield Label("🔄 Connected to real-time updates", id="status-bar")
-        yield DataTable(id="assignments-table", cursor_type="row")
+        with Container(id="main-content"):
+            yield DataTable(id="assignments-table", cursor_type="row")
+            yield StatsPanel()
         yield Footer()
 
     async def on_mount(self) -> None:
         """Initialize table and load data."""
+        logger.info("BoardScreen.on_mount() started")
+
         # Setup table
+        logger.info("Setting up table...")
         table = self.query_one("#assignments-table", DataTable)
         table.add_columns(
             "ID", "Ramp", "Load", "Direction", "Status", "ETA In", "ETA Out", "Version"
         )
+        logger.info("Table setup complete")
 
         # Connect WebSocket and register callbacks
-        await self.ws_client.connect()
-        self.ws_client.on_message("assignment_created", self._on_assignment_created)
-        self.ws_client.on_message("assignment_updated", self._on_assignment_updated)
-        self.ws_client.on_message("assignment_deleted", self._on_assignment_deleted)
-        self.ws_client.on_message("conflict_detected", self._on_conflict_detected)
+        logger.info("Connecting to WebSocket...")
+        try:
+            await self.ws_client.connect()
+            self.ws_client.on_message("assignment_created", self._on_assignment_created)
+            self.ws_client.on_message("assignment_updated", self._on_assignment_updated)
+            self.ws_client.on_message("assignment_deleted", self._on_assignment_deleted)
+            self.ws_client.on_message("conflict_detected", self._on_conflict_detected)
+            self._update_status("🔄 Connected to real-time updates")
+            logger.info("WebSocket connected successfully")
+        except Exception as e:
+            logger.error(f"WebSocket connection failed: {e}", exc_info=True)
+            self._update_status(f"⚠️ WebSocket connection failed: {e}. Working in offline mode.")
 
         # Load initial data
+        logger.info("Loading initial assignments...")
         await self.action_refresh()
+        logger.info("BoardScreen.on_mount() completed")
 
     def _on_assignment_created(self, data: Dict[str, Any]) -> None:
         """Handle assignment created event."""
@@ -177,17 +213,45 @@ class BoardScreen(Screen):
             load = assignment.get("load", {})
             status = assignment.get("status", {})
 
+            # Get status with color
+            status_label = status.get("label", "")
+            status_color = status.get("color", "white")
+            # Map common color names to Rich colors
+            color_map = {
+                "blue": "blue",
+                "cyan": "cyan",
+                "yellow": "yellow",
+                "green": "green",
+                "red": "red",
+                "gray": "bright_black",
+                "grey": "bright_black",
+            }
+            rich_color = color_map.get(status_color.lower(), status_color.lower())
+            colored_status = f"[{rich_color}]{status_label}[/{rich_color}]"
+
+            # Color direction too
+            direction = load.get("direction", "")
+            colored_direction = f"[cyan]{direction}[/cyan]" if direction == "IB" else f"[yellow]{direction}[/yellow]"
+
             table.add_row(
                 str(assignment.get("id", "")),
                 ramp.get("code", ""),
                 load.get("reference", ""),
-                load.get("direction", ""),
-                status.get("label", ""),
+                colored_direction,
+                colored_status,
                 self._format_datetime(assignment.get("eta_in")),
                 self._format_datetime(assignment.get("eta_out")),
                 str(assignment.get("version", "")),
                 key=str(assignment.get("id")),
             )
+
+        # Update statistics panel
+        self._update_stats()
+
+    def _update_stats(self) -> None:
+        """Update statistics panel."""
+        stats_panel = self.query_one(StatsPanel)
+        stats_panel.update_stats(self.assignments)
 
     def _format_datetime(self, dt: Optional[str]) -> str:
         """Format datetime string."""
@@ -201,16 +265,61 @@ class BoardScreen(Screen):
 
     async def action_refresh(self) -> None:
         """Refresh assignments from API."""
+        logger.info(f"action_refresh() called with filter: {self.current_filter}")
         try:
+            logger.info("Calling API client to get assignments...")
             self.assignments = await self.api_client.get_assignments(self.current_filter)
+            logger.info(f"Received {len(self.assignments)} assignments")
             self._refresh_table()
             self._update_status(f"✓ Loaded {len(self.assignments)} assignments")
+            logger.info("Refresh completed successfully")
         except Exception as e:
+            logger.error(f"Error loading assignments: {e}", exc_info=True)
             self._update_status(f"❌ Error loading assignments: {e}")
 
-    async def action_new_assignment(self) -> None:
+    def action_new_assignment(self) -> None:
         """Create new assignment."""
-        self._update_status("ℹ️ New assignment dialog not yet implemented")
+        logger.info("Opening create assignment modal...")
+
+        def on_create_result(result: Optional[Dict[str, Any]]) -> None:
+            if result:
+                logger.info(f"Assignment created: {result['id']}")
+                self._update_status(f"✅ Created assignment #{result['id']}")
+                # Refresh will happen automatically via WebSocket
+            else:
+                logger.info("Assignment creation cancelled")
+                self._update_status("ℹ️ Assignment creation cancelled")
+
+        self.app.push_screen(CreateAssignmentModal(self.api_client), callback=on_create_result)
+
+    def action_edit_assignment(self) -> None:
+        """Edit selected assignment."""
+        table = self.query_one("#assignments-table", DataTable)
+        if table.cursor_row is None:
+            self._update_status("⚠️ No assignment selected")
+            return
+
+        row_key = table.get_row_at(table.cursor_row)
+        assignment_id = int(row_key[0])
+
+        # Find assignment in list
+        assignment = next((a for a in self.assignments if a['id'] == assignment_id), None)
+        if not assignment:
+            self._update_status(f"❌ Assignment {assignment_id} not found")
+            return
+
+        logger.info(f"Opening edit modal for assignment {assignment_id}...")
+
+        def on_edit_result(result: Optional[Dict[str, Any]]) -> None:
+            if result:
+                logger.info(f"Assignment updated: {result['id']}")
+                self._update_status(f"✅ Updated assignment #{result['id']}")
+                # Refresh will happen automatically via WebSocket
+            else:
+                logger.info("Assignment edit cancelled")
+                self._update_status("ℹ️ Edit cancelled")
+
+        self.app.push_screen(EditAssignmentModal(self.api_client, assignment), callback=on_edit_result)
 
     async def action_delete_assignment(self) -> None:
         """Delete selected assignment."""
