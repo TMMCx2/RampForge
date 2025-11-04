@@ -26,7 +26,7 @@ class DCDockApp(App):
 
     async def on_mount(self) -> None:
         """Show login screen on startup."""
-        await self.push_screen_wait(LoginScreen(self.api_client))
+        await self.push_screen(LoginScreen(self.api_client))
 
     async def on_screen_resume(self) -> None:
         """Handle screen resume after login."""
