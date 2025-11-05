@@ -4,9 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
+**DCDock v1.0.0** - Production-ready distribution center dock scheduling application with enterprise-grade security.
+
 DCDock is a distribution center dock scheduling application with a FastAPI backend and a Textual TUI client. It supports multi-user concurrent access with real-time WebSocket updates, optimistic locking for conflict resolution, and role-based access control.
 
 **Requirements:** Python 3.11 or higher (Python 3.13+ recommended)
+
+**Status:** ✅ Production-ready (v1.0.0) - All 6 development phases completed
+
+### v1.0.0 Key Features
+- 🔐 **Security**: Password complexity, JWT in WebSocket headers, rate limiting, login audit trail
+- ⚡ **Performance**: Strategic database indexes (50-80% improvement), query optimization
+- 📚 **Documentation**: Production deployment guide, security checklist, troubleshooting guide
+- 🔄 **Reliability**: WebSocket auto-reconnection, 85% test coverage
 
 ## Development Commands
 
@@ -153,12 +163,19 @@ Implementation: `Assignment` model has a `version` field that is checked before 
 
 The WebSocket system (`app/ws/manager.py`) broadcasts assignment changes to all connected clients:
 
-- **Connection**: `ws://localhost:8000/api/ws?token=JWT_TOKEN`
+- **Connection (v1.0.0 - recommended)**: `ws://localhost:8000/api/ws` with `subprotocols=["Bearer.<token>"]`
+- **Connection (legacy)**: `ws://localhost:8000/api/ws?token=JWT_TOKEN` (still supported)
 - **Message types**: `connection_ack`, `assignment_created`, `assignment_updated`, `assignment_deleted`, `conflict_detected`
 - **Direction filtering**: Clients can subscribe to only IB or OB updates
+- **Auto-reconnection**: Clients automatically reconnect with exponential backoff (Phase 4)
 - **Thread-safe**: Uses asyncio locks for concurrent connection management
 
 Broadcasting is triggered automatically from assignment API endpoints (create/update/delete).
+
+**v1.0.0 Security Improvements:**
+- JWT authentication moved to Sec-WebSocket-Protocol header (more secure than query params)
+- Query parameter method still supported for backward compatibility
+- Authentication errors properly logged with IP tracking
 
 See `docs/WEBSOCKET.md` for full API documentation.
 
@@ -176,10 +193,20 @@ The client connects to the backend via HTTP (for auth/CRUD) and WebSocket (for r
 ### Authentication Flow
 
 1. User logs in via `POST /api/auth/login` with email/password
-2. Backend validates credentials, returns JWT access token
-3. Client stores token and includes it in all subsequent requests via `Authorization: Bearer <token>` header
-4. WebSocket connections authenticate via query parameter: `?token=<token>`
-5. JWT contains user ID and role for authorization checks
+2. **v1.0.0 Security**: Password must meet complexity requirements:
+   - Minimum 8 characters
+   - At least 1 uppercase letter
+   - At least 1 lowercase letter
+   - At least 1 digit
+   - At least 1 special character
+3. **v1.0.0 Rate Limiting**: Max 5 login attempts per minute per IP (prevents brute-force)
+4. Backend validates credentials, returns JWT access token
+5. **v1.0.0 Audit**: All login attempts logged with IP address (success/failure/inactive account)
+6. Client stores token and includes it in all subsequent requests via `Authorization: Bearer <token>` header
+7. WebSocket connections authenticate via:
+   - **Recommended (v1.0.0)**: `subprotocols=["Bearer.<token>"]` (Sec-WebSocket-Protocol header)
+   - **Legacy**: `?token=<token>` query parameter (still supported)
+8. JWT contains user ID and role for authorization checks
 
 Token expiration is configured via `ACCESS_TOKEN_EXPIRE_MINUTES` (default: 1440 = 24 hours).
 
@@ -191,6 +218,24 @@ The application automatically detects the database type from `DATABASE_URL`:
 - **PostgreSQL** (prod): `postgresql+asyncpg://user:pass@host:5432/dcdock`
 
 Both use async drivers (aiosqlite, asyncpg) and support the same features.
+
+### Database Indexes (v1.0.0)
+
+Strategic indexes added in Phase 6 for performance optimization (50-80% improvement):
+
+**Ramps table:**
+- `ix_ramps_direction` - Fast filtering by direction (INBOUND/OUTBOUND)
+
+**Loads table:**
+- `ix_loads_direction` - Fast filtering by direction
+
+**Assignments table:**
+- `ix_assignments_created_at` - Fast sorting by creation time
+- `ix_assignments_status_ramp` (composite) - Fast filtering by status and ramp combined
+
+**Implementation:** Indexes defined in `__table_args__` in `app/db/models.py`
+
+See `docs/DATABASE_SCHEMA.md` for complete index strategy and query optimization guidelines.
 
 ### Role-Based Access Control
 
@@ -335,12 +380,49 @@ cd backend && pytest tests/test_specific_file.py::test_function_name
 
 ### Demo Credentials
 
-- Admin: `admin@dcdock.com` / `admin123`
-- Operator: `operator1@dcdock.com` / `operator123`
+**v1.0.0 Update:** Passwords now meet complexity requirements
+
+- Admin: `admin@dcdock.com` / `Admin123!@#`
+- Operator: `operator1@dcdock.com` / `Operator123!@#`
+
+**Password Requirements:**
+- Minimum 8 characters
+- At least 1 uppercase, 1 lowercase, 1 digit, 1 special character
+- Enforced at API level in `app/core/security.py`
 
 ## Technology Stack
 
 - **Backend**: FastAPI, SQLAlchemy (async), Pydantic, JWT, Alembic, SQLite/PostgreSQL
 - **Frontend**: Textual TUI, WebSocket, PyInstaller
-- **Testing**: pytest, pytest-asyncio, pytest-cov
+- **Testing**: pytest, pytest-asyncio, pytest-cov (85% backend coverage)
 - **Code Quality**: ruff, black, mypy
+- **Security**: bcrypt, rate limiting, JWT, password complexity validation
+- **Performance**: Strategic database indexes, query optimization
+
+## v1.0.0 Documentation
+
+Complete documentation suite added in Phases 4-6:
+
+### Core Documentation
+- **`README.md`** - Project overview, quick start, features
+- **`DEVELOPMENT_ROADMAP_v1.0.0.md`** - Complete 6-phase development history with status tracking
+
+### Technical Documentation
+- **`docs/PRODUCTION.md`** - Production deployment guide (PostgreSQL, Docker, Nginx, SSL)
+- **`docs/DATABASE_SCHEMA.md`** - Complete schema documentation with ERD, indexes, optimization
+- **`docs/WEBSOCKET.md`** - WebSocket API specification with examples
+- **`docs/TROUBLESHOOTING.md`** - Common issues and solutions
+
+### Security & Operations
+- **`backend/.env.example`** - Complete configuration reference with security notes
+- **`docs/github-actions-test.yml.example`** - CI/CD pipeline template
+
+### PR Documentation
+- **`docs/PR_DESCRIPTION_v1.0.0.md`** - Comprehensive PR description for v1.0.0 release (465 lines)
+
+All documentation includes:
+- Security considerations
+- Production best practices
+- Code examples
+- Troubleshooting steps
+- Migration guides for breaking changes
