@@ -741,6 +741,28 @@ class EnhancedDockDashboard(Screen):
 
     DataTable .datatable--header {
         text-style: bold;
+        background: $boost;
+    }
+
+    /* Zebra striping for better readability */
+    DataTable > .datatable--odd {
+        background: $surface-darken-2;
+    }
+
+    DataTable > .datatable--even {
+        background: $surface-darken-1;
+    }
+
+    /* Hover effect */
+    DataTable > .datatable--hover {
+        background: $boost 30%;
+    }
+
+    /* Selected row highlight */
+    DataTable > .datatable--cursor {
+        background: $accent 20%;
+        border: solid $accent;
+        text-style: bold;
     }
 
     Footer {
