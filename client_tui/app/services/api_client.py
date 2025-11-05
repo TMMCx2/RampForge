@@ -178,3 +178,39 @@ class APIClient:
             if response.status_code != 200:
                 raise APIError(response.status_code, response.text)
             return response.json()
+
+    async def create_load(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Create new load."""
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f"{self.base_url}/api/loads/",
+                headers=self._headers(),
+                json=data,
+            )
+            if response.status_code != 201:
+                raise APIError(response.status_code, response.text)
+            return response.json()
+
+    async def create_ramp(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Create new ramp (admin only)."""
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f"{self.base_url}/api/ramps/",
+                headers=self._headers(),
+                json=data,
+            )
+            if response.status_code != 201:
+                raise APIError(response.status_code, response.text)
+            return response.json()
+
+    async def create_user(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Create new user (admin only)."""
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f"{self.base_url}/api/users/",
+                headers=self._headers(),
+                json=data,
+            )
+            if response.status_code != 201:
+                raise APIError(response.status_code, response.text)
+            return response.json()

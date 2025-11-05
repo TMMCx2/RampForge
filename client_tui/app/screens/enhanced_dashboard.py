@@ -752,11 +752,44 @@ class EnhancedDockDashboard(Screen):
 
         def handle_result(result: Optional[Dict[str, Any]]) -> None:
             if result:
-                # TODO: Call API to create assignment
-                self._update_status(f"✓ Dock {self.selected_dock.ramp_code} occupied with {result['load_ref']}")
-                self.run_worker(self.action_refresh(), exclusive=True)
+                self.run_worker(self._occupy_dock_async(result), exclusive=True)
 
         self.app.push_screen(OccupyDockModal(self.selected_dock.ramp_code), callback=handle_result)
+
+    async def _occupy_dock_async(self, modal_data: Dict[str, Any]) -> None:
+        """Async worker to occupy dock via API."""
+        try:
+            # Get statuses to find IN_PROGRESS status ID
+            statuses = await self.api_client.get_statuses()
+            in_progress_status = next((s for s in statuses if s.get("code") == "IN_PROGRESS"), None)
+
+            if not in_progress_status:
+                self._update_status("❌ Error: IN_PROGRESS status not found")
+                return
+
+            # Create the load
+            load_data = {
+                "reference": modal_data["load_ref"],
+                "direction": modal_data["direction"],
+                "notes": modal_data.get("notes", ""),
+            }
+            load = await self.api_client.create_load(load_data)
+            logger.info(f"Created load: {load}")
+
+            # Create the assignment
+            assignment_data = {
+                "ramp_id": self.selected_dock.ramp_id,
+                "load_id": load["id"],
+                "status_id": in_progress_status["id"],
+            }
+            assignment = await self.api_client.create_assignment(assignment_data)
+            logger.info(f"Created assignment: {assignment}")
+
+            self._update_status(f"✓ Dock {self.selected_dock.ramp_code} occupied with {modal_data['load_ref']}")
+            await self.action_refresh()
+        except Exception as exc:
+            logger.exception("Failed to occupy dock")
+            self._update_status(f"❌ Error: {exc}")
 
     def action_free_dock(self) -> None:
         """Free selected dock."""
@@ -768,9 +801,24 @@ class EnhancedDockDashboard(Screen):
             self._update_status("⚠️ Dock is already free")
             return
 
-        # TODO: Call API to delete assignment
-        self._update_status(f"✓ Dock {self.selected_dock.ramp_code} freed")
-        self.run_worker(self.action_refresh(), exclusive=True)
+        self.run_worker(self._free_dock_async(), exclusive=True)
+
+    async def _free_dock_async(self) -> None:
+        """Async worker to free dock via API."""
+        try:
+            assignment_id = self.selected_dock.assignment_id
+            if not assignment_id:
+                self._update_status("❌ Error: No assignment to delete")
+                return
+
+            await self.api_client.delete_assignment(assignment_id)
+            logger.info(f"Deleted assignment {assignment_id}")
+
+            self._update_status(f"✓ Dock {self.selected_dock.ramp_code} freed")
+            await self.action_refresh()
+        except Exception as exc:
+            logger.exception("Failed to free dock")
+            self._update_status(f"❌ Error: {exc}")
 
     def action_block_dock(self) -> None:
         """Block selected dock with reason."""
@@ -780,30 +828,96 @@ class EnhancedDockDashboard(Screen):
 
         def handle_result(result: Optional[Dict[str, Any]]) -> None:
             if result:
-                # TODO: Call API to mark dock as blocked
-                self._update_status(f"🔴 Dock {self.selected_dock.ramp_code} blocked: {result['reason']}")
-                self.run_worker(self.action_refresh(), exclusive=True)
+                self.run_worker(self._block_dock_async(result), exclusive=True)
 
         self.app.push_screen(BlockDockModal(self.selected_dock.ramp_code), callback=handle_result)
+
+    async def _block_dock_async(self, modal_data: Dict[str, Any]) -> None:
+        """Async worker to block dock via API."""
+        try:
+            # Get statuses to find CANCELLED status ID
+            statuses = await self.api_client.get_statuses()
+            cancelled_status = next((s for s in statuses if s.get("code") == "CANCELLED"), None)
+
+            if not cancelled_status:
+                self._update_status("❌ Error: CANCELLED status not found")
+                return
+
+            # Create a load with "BLOCKED" reference and the reason in notes
+            load_data = {
+                "reference": f"BLOCKED-{self.selected_dock.ramp_code}",
+                "direction": "IB",  # Direction doesn't matter for blocked status
+                "notes": f"BLOCKED: {modal_data['reason']}",
+            }
+            load = await self.api_client.create_load(load_data)
+            logger.info(f"Created blocked load: {load}")
+
+            # Create assignment with CANCELLED status
+            assignment_data = {
+                "ramp_id": self.selected_dock.ramp_id,
+                "load_id": load["id"],
+                "status_id": cancelled_status["id"],
+            }
+            assignment = await self.api_client.create_assignment(assignment_data)
+            logger.info(f"Created blocked assignment: {assignment}")
+
+            self._update_status(f"🔴 Dock {self.selected_dock.ramp_code} blocked: {modal_data['reason']}")
+            await self.action_refresh()
+        except Exception as exc:
+            logger.exception("Failed to block dock")
+            self._update_status(f"❌ Error: {exc}")
 
     def _add_dock(self) -> None:
         """Add new dock (admin only)."""
         def handle_result(result: Optional[Dict[str, Any]]) -> None:
             if result:
-                # TODO: Call API to create ramp
-                self._update_status(f"✓ Dock {result['code']} added")
-                self.run_worker(self.action_refresh(), exclusive=True)
+                self.run_worker(self._add_dock_async(result), exclusive=True)
 
         self.app.push_screen(AddDockModal(), callback=handle_result)
+
+    async def _add_dock_async(self, modal_data: Dict[str, Any]) -> None:
+        """Async worker to add dock via API."""
+        try:
+            # Create the ramp
+            ramp_data = {
+                "code": modal_data["code"],
+                "description": modal_data.get("description", f"{modal_data['dock_type'].title()} dock"),
+            }
+            ramp = await self.api_client.create_ramp(ramp_data)
+            logger.info(f"Created ramp: {ramp}")
+
+            self._update_status(f"✓ Dock {modal_data['code']} added")
+            await self.action_refresh()
+        except Exception as exc:
+            logger.exception("Failed to add dock")
+            self._update_status(f"❌ Error: {exc}")
 
     def _add_user(self) -> None:
         """Add new user (admin only)."""
         def handle_result(result: Optional[Dict[str, Any]]) -> None:
             if result:
-                # TODO: Call API to create user
-                self._update_status(f"✓ User {result['email']} added")
+                self.run_worker(self._add_user_async(result), exclusive=True)
 
         self.app.push_screen(AddUserModal(), callback=handle_result)
+
+    async def _add_user_async(self, modal_data: Dict[str, Any]) -> None:
+        """Async worker to add user via API."""
+        try:
+            # Create the user
+            user_data = {
+                "email": modal_data["email"],
+                "full_name": modal_data["full_name"],
+                "password": modal_data["password"],
+                "role": modal_data["role"],
+                "is_active": True,
+            }
+            user = await self.api_client.create_user(user_data)
+            logger.info(f"Created user: {user}")
+
+            self._update_status(f"✓ User {modal_data['email']} added")
+        except Exception as exc:
+            logger.exception("Failed to add user")
+            self._update_status(f"❌ Error: {exc}")
 
     def _update_tables(self) -> None:
         """Update both prime and buffer tables with filtered data."""
