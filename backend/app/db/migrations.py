@@ -36,18 +36,19 @@ async def migrate_add_ramp_direction(session: AsyncSession) -> None:
     try:
         # Step 1: Add the direction column as nullable (SQLite limitation)
         await session.execute(
-            text("ALTER TABLE ramps ADD COLUMN direction VARCHAR(2)")
+            text("ALTER TABLE ramps ADD COLUMN direction VARCHAR(10)")
         )
         logger.info("✓ Added 'direction' column")
 
         # Step 2: Update existing ramps with default direction based on code pattern
         # Assuming R1-R4 are Inbound, R5+ are Outbound
+        # Note: Using enum names (INBOUND/OUTBOUND) not values (IB/OB)
         await session.execute(
             text("""
                 UPDATE ramps
                 SET direction = CASE
-                    WHEN CAST(SUBSTR(code, 2) AS INTEGER) <= 4 THEN 'IB'
-                    ELSE 'OB'
+                    WHEN CAST(SUBSTR(code, 2) AS INTEGER) <= 4 THEN 'INBOUND'
+                    ELSE 'OUTBOUND'
                 END
                 WHERE code LIKE 'R%' AND direction IS NULL
             """)
@@ -58,7 +59,7 @@ async def migrate_add_ramp_direction(session: AsyncSession) -> None:
         await session.execute(
             text("""
                 UPDATE ramps
-                SET direction = 'IB'
+                SET direction = 'INBOUND'
                 WHERE direction IS NULL
             """)
         )
