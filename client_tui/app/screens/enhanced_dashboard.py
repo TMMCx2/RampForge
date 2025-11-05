@@ -85,8 +85,8 @@ class ConfirmFreeDockModal(ModalScreen[bool]):
             )
 
             with Horizontal(id="button-bar"):
-                yield Button("Yes, Free Dock", variant="error", id="confirm")
-                yield Button("Cancel", variant="default", id="cancel")
+                yield Button("✓ Yes, Free Dock", variant="error", id="confirm")
+                yield Button("✗ Cancel", variant="default", id="cancel")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "confirm":
@@ -148,7 +148,8 @@ class OccupyDockModal(ModalScreen[Dict[str, Any]]):
     def compose(self) -> ComposeResult:
         with Container(id="modal-container"):
             dept_label = "Outbound" if self.is_outbound else "Inbound"
-            yield Static(f"Occupy Dock {self.dock_code} ({dept_label})", classes="modal-title")
+            icon = "📤" if self.is_outbound else "📥"
+            yield Static(f"{icon} Occupy Dock {self.dock_code} ({dept_label})", classes="modal-title")
 
             with Vertical(classes="input-group"):
                 yield Static("Load Reference:", classes="input-label")
@@ -165,8 +166,8 @@ class OccupyDockModal(ModalScreen[Dict[str, Any]]):
                 yield Input(placeholder="Additional notes...", id="notes")
 
             with Horizontal(id="button-bar"):
-                yield Button("Confirm", variant="primary", id="confirm")
-                yield Button("Cancel", id="cancel")
+                yield Button("✓ Occupy Dock", variant="primary", id="confirm")
+                yield Button("✗ Cancel", id="cancel")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "confirm":
@@ -258,8 +259,8 @@ class BlockDockModal(ModalScreen[Dict[str, Any]]):
                 )
 
             with Horizontal(id="button-bar"):
-                yield Button("Block Dock", variant="error", id="confirm")
-                yield Button("Cancel", id="cancel")
+                yield Button("🔴 Block Dock", variant="error", id="confirm")
+                yield Button("✗ Cancel", id="cancel")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "confirm":
@@ -338,8 +339,8 @@ class AddDockModal(ModalScreen[Dict[str, Any]]):
                 yield Input(placeholder="Dock description...", id="description")
 
             with Horizontal(id="button-bar"):
-                yield Button("Add Dock", variant="success", id="confirm")
-                yield Button("Cancel", id="cancel")
+                yield Button("✓ Add Dock", variant="success", id="confirm")
+                yield Button("✗ Cancel", id="cancel")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "confirm":
@@ -426,8 +427,8 @@ class AddUserModal(ModalScreen[Dict[str, Any]]):
                 yield Select([("Operator", "OPERATOR"), ("Admin", "ADMIN")], id="role")
 
             with Horizontal(id="button-bar"):
-                yield Button("Add User", variant="success", id="confirm")
-                yield Button("Cancel", id="cancel")
+                yield Button("✓ Add User", variant="success", id="confirm")
+                yield Button("✗ Cancel", id="cancel")
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "confirm":
@@ -1161,7 +1162,7 @@ class EnhancedDockDashboard(Screen):
             table.add_row(
                 info.ramp_code,
                 status_text,
-                info.direction_label if info.direction else "-",
+                self._format_direction(info),
                 info.load_ref or "-",
                 self._format_eta(info),
                 self._format_duration(info),
@@ -1246,17 +1247,50 @@ class EnhancedDockDashboard(Screen):
         else:
             return "[dim]⚪[/dim]"
 
-    def _format_status(self, info: RampInfo) -> str:
-        """Format status with color."""
-        label = info.status_label or "FREE"
-        if info.is_blocked:
-            return f"[red]{label}[/red]"
+    def _get_status_icon(self, info: RampInfo) -> str:
+        """Get emoji icon for status."""
+        if info.is_free:
+            return "🟢"  # Green - free
+        elif info.is_blocked:
+            return "🟠"  # Orange - blocked
         elif info.is_overdue:
-            return f"[orange_red1]{label}[/orange_red1]"
-        elif info.is_occupied:
-            return f"[yellow]{label}[/yellow]"
+            return "🔴"  # Red - overdue/delayed
+        elif info.status_code == "COMPLETED":
+            return "✅"  # Checkmark - completed
+        elif info.status_code == "IN_PROGRESS":
+            return "🔵"  # Blue - in progress
+        elif info.status_code == "ARRIVED":
+            return "🟡"  # Yellow - arrived, waiting
+        elif info.status_code == "PLANNED":
+            return "📅"  # Calendar - planned
         else:
-            return f"[green]{label}[/green]"
+            return "⚪"  # White - unknown
+
+    def _format_status(self, info: RampInfo) -> str:
+        """Format status with icon and color."""
+        label = info.status_label or "FREE"
+        icon = self._get_status_icon(info)
+
+        if info.is_blocked:
+            return f"{icon} [red]{label}[/red]"
+        elif info.is_overdue:
+            return f"{icon} [orange_red1]{label}[/orange_red1]"
+        elif info.is_occupied:
+            return f"{icon} [yellow]{label}[/yellow]"
+        elif info.is_free:
+            return f"{icon} [green]{label}[/green]"
+        else:
+            return f"{icon} {label}"
+
+    def _format_direction(self, info: RampInfo) -> str:
+        """Format direction with icon."""
+        if not info.direction:
+            return "-"
+
+        if info.direction == "IB":
+            return f"[cyan]📥 {info.direction_label}[/cyan]"
+        else:  # OB
+            return f"[magenta]📤 {info.direction_label}[/magenta]"
 
     def _format_eta(self, info: RampInfo) -> str:
         """Format ETA out."""
