@@ -491,6 +491,25 @@ class InfoPanel(Static):
         self._content = Static("Loading...", classes="info-section")
         yield self._content
 
+    def _create_progress_bar(self, value: int, total: int, width: int = 15) -> str:
+        """Create a Unicode progress bar."""
+        if total == 0:
+            return "░" * width
+
+        percentage = value / total
+        filled = int(percentage * width)
+
+        # Color based on percentage
+        if percentage >= 0.9:
+            color = "red"
+        elif percentage >= 0.7:
+            color = "yellow"
+        else:
+            color = "green"
+
+        bar = "█" * filled + "░" * (width - filled)
+        return f"[{color}]{bar}[/{color}]"
+
     def update_stats(
         self,
         total: int = 0,
@@ -503,24 +522,52 @@ class InfoPanel(Static):
         urgent: int = 0,
         blocked: int = 0,
     ) -> None:
-        """Update statistics display."""
+        """Update statistics display with progress bars."""
         if not self._content:
             return
 
+        # Calculate totals and percentages
+        prime_total = prime_free + prime_occupied
+        buffer_total = buffer_free + buffer_occupied
+
+        prime_util_pct = (prime_occupied / prime_total * 100) if prime_total > 0 else 0
+        buffer_util_pct = (buffer_occupied / buffer_total * 100) if buffer_total > 0 else 0
+        total_util_pct = ((prime_occupied + buffer_occupied) / total * 100) if total > 0 else 0
+
+        # Create progress bars
+        prime_bar = self._create_progress_bar(prime_occupied, prime_total)
+        buffer_bar = self._create_progress_bar(buffer_occupied, buffer_total)
+
         lines = [
-            f"[white]Total:[/] {total}",
+            # Overall utilization with big number
+            "[bold white]UTILIZATION[/]",
+            f"[bold cyan]{total_util_pct:.0f}%[/] of {total} docks",
             "",
-            "[yellow]PRIME[/]",
-            f"🟢 {prime_free}  🔵 {prime_occupied}",
+
+            # Prime docks section
+            "[bold yellow]═══ PRIME ═══[/]",
+            f"🔵 {prime_occupied}/{prime_total} occupied",
+            prime_bar,
+            f"[dim]{prime_util_pct:.0f}% utilized[/]",
             "",
-            "[magenta]BUFFER[/]",
-            f"🟢 {buffer_free}  🔵 {buffer_occupied}",
+
+            # Buffer docks section
+            "[bold magenta]═══ BUFFER ═══[/]",
+            f"🔵 {buffer_occupied}/{buffer_total} occupied",
+            buffer_bar,
+            f"[dim]{buffer_util_pct:.0f}% utilized[/]",
             "",
-            f"📥 IB: {ib_count}",
-            f"📤 OB: {ob_count}",
+
+            # Direction breakdown
+            "[bold white]DIRECTION[/]",
+            f"📥 [cyan]Inbound:[/] {ib_count}",
+            f"📤 [magenta]Outbound:[/] {ob_count}",
             "",
-            f"[red]🔴 {urgent}[/]",
-            f"[orange_red1]⚠️  {blocked}[/]",
+
+            # Alerts section
+            "[bold red]⚠️  ALERTS[/]",
+            f"🔴 Overdue: {urgent}",
+            f"🟠 Blocked: {blocked}",
         ]
 
         self._content.update("\n".join(lines))
