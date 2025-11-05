@@ -703,15 +703,15 @@ class EnhancedDockDashboard(Screen):
         if button_id == "btn-refresh":
             await self.action_refresh()
         elif button_id == "btn-occupy":
-            await self.action_occupy_dock()
+            self.action_occupy_dock()
         elif button_id == "btn-free":
-            await self.action_free_dock()
+            self.action_free_dock()
         elif button_id == "btn-block":
-            await self.action_block_dock()
+            self.action_block_dock()
         elif button_id == "btn-add-dock" and self.is_admin:
-            await self._add_dock()
+            self._add_dock()
         elif button_id == "btn-add-user" and self.is_admin:
-            await self._add_user()
+            self._add_user()
 
     async def on_data_table_row_highlighted(self, event: DataTable.RowHighlighted) -> None:
         """Handle row selection."""
@@ -740,7 +740,7 @@ class EnhancedDockDashboard(Screen):
         self._update_info_panel()
         self._update_status(f"✓ Loaded {len(self.ramp_infos)} docks")
 
-    async def action_occupy_dock(self) -> None:
+    def action_occupy_dock(self) -> None:
         """Occupy selected dock with load."""
         if not self.selected_dock:
             self._update_status("⚠️ Select a dock first")
@@ -750,14 +750,15 @@ class EnhancedDockDashboard(Screen):
             self._update_status("⚠️ Dock is already occupied")
             return
 
-        result = await self.app.push_screen_wait(OccupyDockModal(self.selected_dock.ramp_code))
+        def handle_result(result: Optional[Dict[str, Any]]) -> None:
+            if result:
+                # TODO: Call API to create assignment
+                self._update_status(f"✓ Dock {self.selected_dock.ramp_code} occupied with {result['load_ref']}")
+                self.run_worker(self.action_refresh(), exclusive=True)
 
-        if result:
-            # TODO: Call API to create assignment
-            self._update_status(f"✓ Dock {self.selected_dock.ramp_code} occupied with {result['load_ref']}")
-            await self.action_refresh()
+        self.app.push_screen(OccupyDockModal(self.selected_dock.ramp_code), callback=handle_result)
 
-    async def action_free_dock(self) -> None:
+    def action_free_dock(self) -> None:
         """Free selected dock."""
         if not self.selected_dock:
             self._update_status("⚠️ Select a dock first")
@@ -769,37 +770,40 @@ class EnhancedDockDashboard(Screen):
 
         # TODO: Call API to delete assignment
         self._update_status(f"✓ Dock {self.selected_dock.ramp_code} freed")
-        await self.action_refresh()
+        self.run_worker(self.action_refresh(), exclusive=True)
 
-    async def action_block_dock(self) -> None:
+    def action_block_dock(self) -> None:
         """Block selected dock with reason."""
         if not self.selected_dock:
             self._update_status("⚠️ Select a dock first")
             return
 
-        result = await self.app.push_screen_wait(BlockDockModal(self.selected_dock.ramp_code))
+        def handle_result(result: Optional[Dict[str, Any]]) -> None:
+            if result:
+                # TODO: Call API to mark dock as blocked
+                self._update_status(f"🔴 Dock {self.selected_dock.ramp_code} blocked: {result['reason']}")
+                self.run_worker(self.action_refresh(), exclusive=True)
 
-        if result:
-            # TODO: Call API to mark dock as blocked
-            self._update_status(f"🔴 Dock {self.selected_dock.ramp_code} blocked: {result['reason']}")
-            await self.action_refresh()
+        self.app.push_screen(BlockDockModal(self.selected_dock.ramp_code), callback=handle_result)
 
-    async def _add_dock(self) -> None:
+    def _add_dock(self) -> None:
         """Add new dock (admin only)."""
-        result = await self.app.push_screen_wait(AddDockModal())
+        def handle_result(result: Optional[Dict[str, Any]]) -> None:
+            if result:
+                # TODO: Call API to create ramp
+                self._update_status(f"✓ Dock {result['code']} added")
+                self.run_worker(self.action_refresh(), exclusive=True)
 
-        if result:
-            # TODO: Call API to create ramp
-            self._update_status(f"✓ Dock {result['code']} added")
-            await self.action_refresh()
+        self.app.push_screen(AddDockModal(), callback=handle_result)
 
-    async def _add_user(self) -> None:
+    def _add_user(self) -> None:
         """Add new user (admin only)."""
-        result = await self.app.push_screen_wait(AddUserModal())
+        def handle_result(result: Optional[Dict[str, Any]]) -> None:
+            if result:
+                # TODO: Call API to create user
+                self._update_status(f"✓ User {result['email']} added")
 
-        if result:
-            # TODO: Call API to create user
-            self._update_status(f"✓ User {result['email']} added")
+        self.app.push_screen(AddUserModal(), callback=handle_result)
 
     def _update_tables(self) -> None:
         """Update both prime and buffer tables with filtered data."""
