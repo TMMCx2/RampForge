@@ -491,6 +491,25 @@ class InfoPanel(Static):
         self._content = Static("Loading...", classes="info-section")
         yield self._content
 
+    def _create_progress_bar(self, value: int, total: int, width: int = 15) -> str:
+        """Create a Unicode progress bar."""
+        if total == 0:
+            return "░" * width
+
+        percentage = value / total
+        filled = int(percentage * width)
+
+        # Color based on percentage
+        if percentage >= 0.9:
+            color = "red"
+        elif percentage >= 0.7:
+            color = "yellow"
+        else:
+            color = "green"
+
+        bar = "█" * filled + "░" * (width - filled)
+        return f"[{color}]{bar}[/{color}]"
+
     def update_stats(
         self,
         total: int = 0,
@@ -503,24 +522,52 @@ class InfoPanel(Static):
         urgent: int = 0,
         blocked: int = 0,
     ) -> None:
-        """Update statistics display."""
+        """Update statistics display with progress bars."""
         if not self._content:
             return
 
+        # Calculate totals and percentages
+        prime_total = prime_free + prime_occupied
+        buffer_total = buffer_free + buffer_occupied
+
+        prime_util_pct = (prime_occupied / prime_total * 100) if prime_total > 0 else 0
+        buffer_util_pct = (buffer_occupied / buffer_total * 100) if buffer_total > 0 else 0
+        total_util_pct = ((prime_occupied + buffer_occupied) / total * 100) if total > 0 else 0
+
+        # Create progress bars
+        prime_bar = self._create_progress_bar(prime_occupied, prime_total)
+        buffer_bar = self._create_progress_bar(buffer_occupied, buffer_total)
+
         lines = [
-            f"[white]Total:[/] {total}",
+            # Overall utilization with big number
+            "[bold white]UTILIZATION[/]",
+            f"[bold cyan]{total_util_pct:.0f}%[/] of {total} docks",
             "",
-            "[yellow]PRIME[/]",
-            f"🟢 {prime_free}  🔵 {prime_occupied}",
+
+            # Prime docks section
+            "[bold yellow]═══ PRIME ═══[/]",
+            f"🔵 {prime_occupied}/{prime_total} occupied",
+            prime_bar,
+            f"[dim]{prime_util_pct:.0f}% utilized[/]",
             "",
-            "[magenta]BUFFER[/]",
-            f"🟢 {buffer_free}  🔵 {buffer_occupied}",
+
+            # Buffer docks section
+            "[bold magenta]═══ BUFFER ═══[/]",
+            f"🔵 {buffer_occupied}/{buffer_total} occupied",
+            buffer_bar,
+            f"[dim]{buffer_util_pct:.0f}% utilized[/]",
             "",
-            f"📥 IB: {ib_count}",
-            f"📤 OB: {ob_count}",
+
+            # Direction breakdown
+            "[bold white]DIRECTION[/]",
+            f"📥 [cyan]Inbound:[/] {ib_count}",
+            f"📤 [magenta]Outbound:[/] {ob_count}",
             "",
-            f"[red]🔴 {urgent}[/]",
-            f"[orange_red1]⚠️  {blocked}[/]",
+
+            # Alerts section
+            "[bold red]⚠️  ALERTS[/]",
+            f"🔴 Overdue: {urgent}",
+            f"🟠 Blocked: {blocked}",
         ]
 
         self._content.update("\n".join(lines))
@@ -801,6 +848,8 @@ class EnhancedDockDashboard(Screen):
         self.selected_dock: Optional[RampInfo] = None
         self.ws_connected = False
         self.ws_status = "disconnected"
+        self._loading = False
+        self._spinner_state = 0
 
     def compose(self) -> ComposeResult:
         """Compose enhanced dashboard layout."""
@@ -867,6 +916,7 @@ class EnhancedDockDashboard(Screen):
                 "Load Ref",
                 "ETA Out",
                 "Duration",
+                "Time Left",
                 "Priority",
                 "Notes",
             )
@@ -925,11 +975,14 @@ class EnhancedDockDashboard(Screen):
     async def action_refresh(self) -> None:
         """Reload all data from API."""
         logger.info("Refreshing dashboard data")
+        self._set_loading("Loading data...")
+
         try:
             self.ramps = await self.api_client.get_ramps()
             self.assignments = await self.api_client.get_assignments()
         except Exception as exc:
             logger.exception("Failed to load data")
+            self._clear_loading()
             self._update_status(f"❌ Error: {exc}")
             return
 
@@ -937,7 +990,7 @@ class EnhancedDockDashboard(Screen):
         self._update_tables()
         self._update_info_panel()
         self._update_status_metrics()
-        self._update_status(f"✓ Loaded {len(self.ramp_infos)} docks")
+        self._clear_loading(f"Loaded {len(self.ramp_infos)} docks")
 
     def action_occupy_dock(self) -> None:
         """Occupy selected dock with load."""
@@ -961,12 +1014,15 @@ class EnhancedDockDashboard(Screen):
 
     async def _occupy_dock_async(self, modal_data: Dict[str, Any]) -> None:
         """Async worker to occupy dock via API."""
+        self._set_loading(f"Occupying dock {self.selected_dock.ramp_code}...")
+
         try:
             # Get statuses to find IN_PROGRESS status ID
             statuses = await self.api_client.get_statuses()
             in_progress_status = next((s for s in statuses if s.get("code") == "IN_PROGRESS"), None)
 
             if not in_progress_status:
+                self._clear_loading()
                 self._update_status("❌ Error: IN_PROGRESS status not found")
                 return
 
@@ -986,6 +1042,7 @@ class EnhancedDockDashboard(Screen):
                     # Convert to ISO format for API
                     load_data["planned_departure"] = departure_dt.isoformat()
                 except ValueError as e:
+                    self._clear_loading()
                     self._update_status(f"❌ Invalid departure date format: {e}")
                     return
 
@@ -1006,10 +1063,11 @@ class EnhancedDockDashboard(Screen):
             assignment = await self.api_client.create_assignment(assignment_data)
             logger.info(f"Created assignment: {assignment}")
 
-            self._update_status(f"✓ Dock {self.selected_dock.ramp_code} occupied with {modal_data['load_ref']}")
             await self.action_refresh()
+            self._clear_loading(f"Dock {self.selected_dock.ramp_code} occupied with {modal_data['load_ref']}")
         except Exception as exc:
             logger.exception("Failed to occupy dock")
+            self._clear_loading()
             self._update_status(f"❌ Error: {exc}")
 
     def action_free_dock(self) -> None:
@@ -1037,19 +1095,23 @@ class EnhancedDockDashboard(Screen):
 
     async def _free_dock_async(self) -> None:
         """Async worker to free dock via API."""
+        self._set_loading(f"Freeing dock {self.selected_dock.ramp_code}...")
+
         try:
             assignment_id = self.selected_dock.assignment_id
             if not assignment_id:
+                self._clear_loading()
                 self._update_status("❌ Error: No assignment to delete")
                 return
 
             await self.api_client.delete_assignment(assignment_id)
             logger.info(f"Deleted assignment {assignment_id}")
 
-            self._update_status(f"✓ Dock {self.selected_dock.ramp_code} freed")
             await self.action_refresh()
+            self._clear_loading(f"Dock {self.selected_dock.ramp_code} freed")
         except Exception as exc:
             logger.exception("Failed to free dock")
+            self._clear_loading()
             self._update_status(f"❌ Error: {exc}")
 
     def action_block_dock(self) -> None:
@@ -1066,12 +1128,15 @@ class EnhancedDockDashboard(Screen):
 
     async def _block_dock_async(self, modal_data: Dict[str, Any]) -> None:
         """Async worker to block dock via API."""
+        self._set_loading(f"Blocking dock {self.selected_dock.ramp_code}...")
+
         try:
             # Get statuses to find CANCELLED status ID
             statuses = await self.api_client.get_statuses()
             cancelled_status = next((s for s in statuses if s.get("code") == "CANCELLED"), None)
 
             if not cancelled_status:
+                self._clear_loading()
                 self._update_status("❌ Error: CANCELLED status not found")
                 return
 
@@ -1093,10 +1158,11 @@ class EnhancedDockDashboard(Screen):
             assignment = await self.api_client.create_assignment(assignment_data)
             logger.info(f"Created blocked assignment: {assignment}")
 
-            self._update_status(f"🔴 Dock {self.selected_dock.ramp_code} blocked: {modal_data['reason']}")
             await self.action_refresh()
+            self._clear_loading(f"🔴 Dock {self.selected_dock.ramp_code} blocked: {modal_data['reason']}")
         except Exception as exc:
             logger.exception("Failed to block dock")
+            self._clear_loading()
             self._update_status(f"❌ Error: {exc}")
 
     def _add_dock(self) -> None:
@@ -1188,6 +1254,7 @@ class EnhancedDockDashboard(Screen):
                 info.load_ref or "-",
                 self._format_eta(info),
                 self._format_duration(info),
+                self._format_time_left(info),
                 priority_icon,
                 (info.notes or "-")[:30],
                 key=str(info.ramp_id),
@@ -1322,20 +1389,55 @@ class EnhancedDockDashboard(Screen):
         return dt.strftime("%H:%M")
 
     def _format_duration(self, info: RampInfo) -> str:
-        """Return human friendly duration."""
-        origin = info.created_at_dt or info.updated_at_dt
-        if not origin:
+        """Format how long dock has been occupied."""
+        if not info.is_occupied:
             return "-"
-        now = datetime.now(timezone.utc)
-        delta = now - origin
-        minutes = int(delta.total_seconds() // 60)
+
+        minutes = info.duration_minutes
+        if minutes is None:
+            return "-"
+
         if minutes < 60:
             return f"{minutes}m"
         hours = minutes // 60
+        mins = minutes % 60
         if hours < 24:
-            return f"{hours}h"
+            return f"{hours}h {mins}m" if mins > 0 else f"{hours}h"
         days = hours // 24
-        return f"{days}d"
+        remaining_hours = hours % 24
+        return f"{days}d {remaining_hours}h" if remaining_hours > 0 else f"{days}d"
+
+    def _format_time_left(self, info: RampInfo) -> str:
+        """Format time left until ETA out."""
+        if not info.is_occupied or not info.eta_out_dt:
+            return "-"
+
+        minutes = info.time_left_minutes
+        if minutes is None:
+            return "-"
+
+        # Overdue (negative time left)
+        if minutes < 0:
+            abs_min = abs(minutes)
+            if abs_min < 60:
+                return f"[red]-{abs_min}m[/red]"
+            hours = abs_min // 60
+            return f"[red]-{hours}h[/red]"
+
+        # Time left (positive)
+        if minutes < 60:
+            if minutes <= 15:
+                return f"[yellow]{minutes}m[/yellow]"  # Warning - running out of time
+            return f"{minutes}m"
+
+        hours = minutes // 60
+        mins = minutes % 60
+        time_str = f"{hours}h {mins}m" if mins > 0 else f"{hours}h"
+
+        # Color code based on urgency
+        if hours < 1:
+            return f"[yellow]{time_str}[/yellow]"  # Less than 1 hour - warning
+        return time_str
 
     async def _handle_ws_event(self, _: Dict[str, Any]) -> None:
         """React to WebSocket updates."""
@@ -1410,6 +1512,44 @@ class EnhancedDockDashboard(Screen):
             )
         except Exception:
             pass  # Widget not mounted yet
+
+    def _get_spinner(self) -> str:
+        """Get current spinner character."""
+        spinners = ["◐", "◓", "◑", "◒"]
+        return spinners[self._spinner_state % len(spinners)]
+
+    def _set_loading(self, message: str) -> None:
+        """Set loading state - disable buttons and show spinner."""
+        self._loading = True
+        self._spinner_state = (self._spinner_state + 1) % 4
+
+        # Update status with spinner
+        spinner = self._get_spinner()
+        self._update_status(f"{spinner} {message}")
+
+        # Disable action buttons
+        try:
+            for button_id in ["btn-refresh", "btn-occupy", "btn-free", "btn-block"]:
+                button = self.query_one(f"#{button_id}", Button)
+                button.disabled = True
+        except Exception:
+            pass  # Buttons not mounted yet
+
+    def _clear_loading(self, success_message: str = "", show_checkmark: bool = True) -> None:
+        """Clear loading state - enable buttons and optionally show success."""
+        self._loading = False
+
+        # Enable action buttons
+        try:
+            for button_id in ["btn-refresh", "btn-occupy", "btn-free", "btn-block"]:
+                button = self.query_one(f"#{button_id}", Button)
+                button.disabled = False
+        except Exception:
+            pass
+
+        # Show success message with checkmark
+        if success_message and show_checkmark:
+            self._update_status(f"✓ {success_message}")
 
     def _on_ws_connection_change(self, connected: bool, status: str) -> None:
         """
