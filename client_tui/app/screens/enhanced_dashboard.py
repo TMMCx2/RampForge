@@ -30,6 +30,71 @@ logger = logging.getLogger(__name__)
 # ============================================================================
 
 
+class ConfirmFreeDockModal(ModalScreen[bool]):
+    """Modal for confirming dock release."""
+
+    DEFAULT_CSS = """
+    ConfirmFreeDockModal {
+        align: center middle;
+    }
+
+    #modal-container {
+        width: 60;
+        height: auto;
+        background: $surface;
+        border: thick $warning;
+        padding: 1 2;
+    }
+
+    .modal-title {
+        width: 100%;
+        text-align: center;
+        text-style: bold;
+        color: $warning;
+        margin-bottom: 1;
+    }
+
+    .modal-message {
+        width: 100%;
+        text-align: center;
+        color: $text;
+        margin-bottom: 1;
+    }
+
+    #button-bar {
+        width: 100%;
+        height: 3;
+        layout: horizontal;
+        align: center middle;
+    }
+    """
+
+    def __init__(self, dock_code: str, load_ref: str) -> None:
+        super().__init__()
+        self.dock_code = dock_code
+        self.load_ref = load_ref
+
+    def compose(self) -> ComposeResult:
+        with Container(id="modal-container"):
+            yield Static(f"⚠️  Free Dock {self.dock_code}?", classes="modal-title")
+            yield Static(
+                f"Are you sure you want to free this dock?\n\n"
+                f"Load: {self.load_ref}\n"
+                f"This action cannot be undone.",
+                classes="modal-message"
+            )
+
+            with Horizontal(id="button-bar"):
+                yield Button("Yes, Free Dock", variant="error", id="confirm")
+                yield Button("Cancel", variant="default", id="cancel")
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if event.button.id == "confirm":
+            self.dismiss(True)
+        else:
+            self.dismiss(False)
+
+
 class OccupyDockModal(ModalScreen[Dict[str, Any]]):
     """Modal for occupying a dock with load information."""
 
@@ -836,7 +901,7 @@ class EnhancedDockDashboard(Screen):
             self._update_status(f"❌ Error: {exc}")
 
     def action_free_dock(self) -> None:
-        """Free selected dock."""
+        """Free selected dock (with confirmation)."""
         if not self.selected_dock:
             self._update_status("⚠️ Select a dock first")
             return
@@ -845,7 +910,18 @@ class EnhancedDockDashboard(Screen):
             self._update_status("⚠️ Dock is already free")
             return
 
-        self.run_worker(self._free_dock_async(), exclusive=True)
+        # Show confirmation modal before freeing
+        def handle_confirmation(confirmed: bool) -> None:
+            if confirmed:
+                self.run_worker(self._free_dock_async(), exclusive=True)
+
+        self.app.push_screen(
+            ConfirmFreeDockModal(
+                dock_code=self.selected_dock.ramp_code,
+                load_ref=self.selected_dock.load_ref or "Unknown"
+            ),
+            callback=handle_confirmation
+        )
 
     async def _free_dock_async(self) -> None:
         """Async worker to free dock via API."""
